@@ -1,0 +1,10 @@
+/* Navigation component specific styles */
+
+/* Custom text shadow for the glowing effect */
+.text-glow {
+  text-shadow: 0 0 5px #0dff00, 0 0 10px #0dff00, 0 0 15px #0dff00;
+}
+
+.text-glow-dim {
+  text-shadow: 0 0 3px #0dff00;
+} 

@@ -7,10 +7,12 @@ import { EducationComponent } from './education/education.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent, ContactComponent, FooterComponent],
+  imports: [RouterOutlet, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent, ContactComponent, FooterComponent, ProfileComponent, NavigationComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
