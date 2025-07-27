@@ -1,6 +1,5 @@
-import { Component, signal, HostListener, AfterViewInit, OnInit } from '@angular/core';
+import { Component, signal, HostListener, AfterViewInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { AboutComponent } from './about/about.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { SkillsComponent } from './skills/skills.component';
@@ -10,49 +9,15 @@ import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent, ContactComponent, FooterComponent, ProfileComponent, NavigationComponent],
+  imports: [RouterOutlet, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent, ContactComponent, FooterComponent, ProfileComponent, NavigationComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
+export class App {
   protected readonly title = signal('youxufkhan-ng');
-
-  // Data properties
-  apiData: any = null;
-  loading = false;
-  error: string | null = null;
-
-  constructor(private dataService: DataService) {}
-
-  ngOnInit(): void {
-    // Example of using the data service
-    this.loadApiData();
-  }
-
-  /**
-   * Load data from the backend API using generic getData method
-   */
-  private loadApiData(): void {
-    this.loading = true;
-    this.error = null;
-    
-    this.dataService.getData<any>('/todos/1').subscribe({
-      next: (data) => {
-        this.apiData = data;
-        this.loading = false;
-        console.log('API data loaded:', data);
-      },
-      error: (error: any) => {
-        this.error = 'Failed to load data from API';
-        this.loading = false;
-        console.error('Error loading API data:', error);
-      }
-    });
-  }
 
   private canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;

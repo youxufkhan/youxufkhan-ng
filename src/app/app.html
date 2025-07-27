@@ -35,34 +35,7 @@
     <!-- Contact Section -->
     <app-contact></app-contact>
 
-    <!-- API Data Example Section -->
-    <section id="api-data" class="section-container p-6 md:p-8 reveal mb-16">
-      <h2 class="text-3xl font-bold text-glow mb-6">// API_DATA_EXAMPLE_</h2>
-      
-      <!-- Loading State -->
-      <div *ngIf="loading" class="text-center py-8">
-        <p class="text-glow-dim">Loading data from backend...</p>
-      </div>
 
-      <!-- Error State -->
-      <div *ngIf="error" class="text-center py-8">
-        <p class="text-red-400">{{ error }}</p>
-      </div>
-
-      <!-- API Data Display -->
-      <div *ngIf="apiData" class="mb-8">
-        <h3 class="text-xl font-bold text-glow mb-4">API Data Received</h3>
-        <div class="border border-green-500/30 p-4 rounded">
-          <pre class="text-glow-dim text-sm overflow-auto">{{ apiData | json }}</pre>
-        </div>
-      </div>
-
-      <!-- No Data State -->
-      <div *ngIf="!loading && !error && !apiData" class="text-center py-8">
-        <p class="text-glow-dim">No data available. Make sure your backend API is running.</p>
-        <p class="text-glow-dim text-sm mt-2">Current endpoint: /example-endpoint</p>
-      </div>
-    </section>
   </div>
 
   <app-footer></app-footer>
