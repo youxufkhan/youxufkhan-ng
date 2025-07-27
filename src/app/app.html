@@ -263,7 +263,8 @@
 
 
   <canvas id="matrix-canvas"></canvas>
-
+   
+  <!-- Profile Section -->
   <div class="relative min-h-screen flex flex-col items-center justify-center p-4">
     <div class="text-center">
       <img src="public/profile.jpeg" alt="Muhammad Yousuf Iqbal Khan"
@@ -325,84 +326,8 @@
     <app-testimonials></app-testimonials>
 
     <!-- Contact Section -->
-    <section id="contact" class="section-container p-6 md:p-8 reveal mb-16">
-      <h2 class="text-3xl font-bold text-glow mb-6">// CONNECT_</h2>
-      <div class="flex flex-wrap gap-6 items-center">
-        <a href="mailto:m.youxuf&#64;gmail.com"
-          class="text-glow-dim hover:text-glow transition-all duration-300">m.youxuf&#64;gmail.com</a>
-        <span class="text-glow-dim hidden md:inline">|</span>
-        <a href="https://linkedin.com/in/yousufiqbalkhan" target="_blank"
-          class="text-glow-dim hover:text-glow transition-all duration-300">LinkedIn</a>
-        <span class="text-glow-dim hidden md:inline">|</span>
-        <a href="https://github.com/youxufkhan" target="_blank"
-          class="text-glow-dim hover:text-glow transition-all duration-300">GitHub</a>
-      </div>
-    </section>
+    <app-contact></app-contact>
   </div>
 
-  <footer class="text-center p-6 text-sm text-green-300/50">
-    <p>Initializing connection... Handshake complete. Welcome.</p>
-    <p>&copy; 2025 Muhammad Yousuf Iqbal Khan. All rights reserved.</p>
-  </footer>
-
-
-  <!-- <script>
-    // Matrix Rain Effect
-    const canvas = document.getElementById('matrix-canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const nums = '0123456789';
-    const characters = katakana + latin + nums;
-    const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
-    const rainDrops = [];
-    for (let i = 0; i < columns; i++) {
-      rainDrops[i] = 1;
-    }
-
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#0dff00';
-      ctx.font = fontSize + 'px monospace';
-      for (let i = 0; i < rainDrops.length; i++) {
-        const text = characters.charAt(Math.floor(Math.random() * characters.length));
-        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          rainDrops[i] = 0;
-        }
-        rainDrops[i]++;
-      }
-    }
-    setInterval(drawMatrix, 50);
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      const newColumns = Math.floor(canvas.width / fontSize);
-      rainDrops.length = 0;
-      for (let i = 0; i < newColumns; i++) {
-        rainDrops[i] = 1;
-      }
-    });
-
-    // Scroll Reveal Animation
-    function reveal() {
-      const reveals = document.querySelectorAll('.reveal');
-      for (let i = 0; i < reveals.length; i++) {
-        const windowHeight = window.innerHeight;
-        const elementTop = reveals[i].getBoundingClientRect().top;
-        const elementVisible = 150;
-        if (elementTop < windowHeight - elementVisible) {
-          reveals[i].classList.add('active');
-        }
-      }
-    }
-    window.addEventListener('scroll', reveal);
-    reveal();
-  </script> -->
-
+  <app-footer></app-footer>
 
