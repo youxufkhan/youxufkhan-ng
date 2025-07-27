@@ -1,8 +1,14 @@
 import { Component, signal, HostListener,AfterViewInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AboutComponent } from './about/about.component';
+import { ExperienceComponent } from './experience/experience.component';
+import { SkillsComponent } from './skills/skills.component';
+import { EducationComponent } from './education/education.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
