@@ -1,342 +1,615 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<style>
-  :host {
-    --bright-blue: oklch(51.01% 0.274 263.83);
-    --electric-violet: oklch(53.18% 0.28 296.97);
-    --french-violet: oklch(47.66% 0.246 305.88);
-    --vivid-pink: oklch(69.02% 0.277 332.77);
-    --hot-red: oklch(61.42% 0.238 15.34);
-    --orange-red: oklch(63.32% 0.24 31.68);
 
-    --gray-900: oklch(19.37% 0.006 300.98);
-    --gray-700: oklch(36.98% 0.014 302.71);
-    --gray-400: oklch(70.9% 0.015 304.04);
 
-    --red-to-pink-to-purple-vertical-gradient: linear-gradient(
-      180deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 50%,
-      var(--electric-violet) 100%
-    );
-
-    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(
-      90deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 50%,
-      var(--electric-violet) 100%
-    );
-
-    --pill-accent: var(--bright-blue);
-
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1 {
-    font-size: 3.125rem;
-    color: var(--gray-900);
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -0.125rem;
-    margin: 0;
-    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-  }
-
-  p {
-    margin: 0;
-    color: var(--gray-700);
-  }
-
-  main {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: inherit;
-    position: relative;
-  }
-
-  .angular-logo {
-    max-width: 9.2rem;
-  }
-
-  .content {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 3rem;
-  }
-
-  .content h1 {
-    margin-top: 1.75rem;
-  }
-
-  .content p {
-    margin-top: 1.5rem;
-  }
-
-  .divider {
-    width: 1px;
-    background: var(--red-to-pink-to-purple-vertical-gradient);
-    margin-inline: 0.5rem;
-  }
-
-  .pill-group {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-  }
-
-  .pill {
-    display: flex;
-    align-items: center;
-    --pill-accent: var(--bright-blue);
-    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);
-    color: var(--pill-accent);
-    padding-inline: 0.75rem;
-    padding-block: 0.375rem;
-    border-radius: 2.75rem;
-    border: 0;
-    transition: background 0.3s ease;
-    font-family: var(--inter-font);
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.4rem;
-    letter-spacing: -0.00875rem;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .pill:hover {
-    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);
-  }
-
-  .pill-group .pill:nth-child(6n + 1) {
-    --pill-accent: var(--bright-blue);
-  }
-  .pill-group .pill:nth-child(6n + 2) {
-    --pill-accent: var(--electric-violet);
-  }
-  .pill-group .pill:nth-child(6n + 3) {
-    --pill-accent: var(--french-violet);
-  }
-
-  .pill-group .pill:nth-child(6n + 4),
-  .pill-group .pill:nth-child(6n + 5),
-  .pill-group .pill:nth-child(6n + 6) {
-    --pill-accent: var(--hot-red);
-  }
-
-  .pill-group svg {
-    margin-inline-start: 0.25rem;
-  }
-
-  .social-links {
-    display: flex;
-    align-items: center;
-    gap: 0.73rem;
-    margin-top: 1.5rem;
-  }
-
-  .social-links path {
-    transition: fill 0.3s ease;
-    fill: var(--gray-400);
-  }
-
-  .social-links a:hover svg path {
-    fill: var(--gray-900);
-  }
-
-  @media screen and (max-width: 650px) {
-    .content {
-      flex-direction: column;
-      width: max-content;
+  
+  <style>
+    /* Custom styles for the matrix theme */
+    html {
+      scroll-behavior: smooth;
     }
 
-    .divider {
-      height: 1px;
+    body {
+      background-color: #000;
+      color: #0dff00;
+      font-family: 'Share Tech Mono', monospace;
+      overflow-x: hidden;
+    }
+
+    /* The canvas will be the background */
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      background: var(--red-to-pink-to-purple-horizontal-gradient);
-      margin-block: 1.5rem;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.3;
     }
-  }
-</style>
 
-<main class="main">
-  <div class="content">
-    <div class="left-side">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 982 239"
-        fill="none"
-        class="angular-logo"
-      >
-        <g clip-path="url(#a)">
-          <path
-            fill="url(#b)"
-            d="M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"
-          />
-          <path
-            fill="url(#c)"
-            d="M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"
-          />
-        </g>
-        <defs>
-          <radialGradient
-            id="c"
-            cx="0"
-            cy="0"
-            r="1"
-            gradientTransform="rotate(118.122 171.182 60.81) scale(205.794)"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#FF41F8" />
-            <stop offset=".707" stop-color="#FF41F8" stop-opacity=".5" />
-            <stop offset="1" stop-color="#FF41F8" stop-opacity="0" />
-          </radialGradient>
-          <linearGradient
-            id="b"
-            x1="0"
-            x2="982"
-            y1="192"
-            y2="192"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#F0060B" />
-            <stop offset="0" stop-color="#F0070C" />
-            <stop offset=".526" stop-color="#CC26D5" />
-            <stop offset="1" stop-color="#7702FF" />
-          </linearGradient>
-          <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
-        </defs>
-      </svg>
-      <h1>Hello, {{ title() }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
+    /* Custom text shadow for the glowing effect */
+    .text-glow {
+      text-shadow: 0 0 5px #0dff00, 0 0 10px #0dff00, 0 0 15px #0dff00;
+    }
+
+    .text-glow-dim {
+      text-shadow: 0 0 3px #0dff00;
+    }
+
+    /* connect Custom text shadow for the glowing effect */
+    .text-connect-glow-dim {
+      text-shadow: 0 0 5px #818181, 0 0 10px #818181, 0 0 15px #818181;
+    }
+
+    /* Section container styling */
+    .section-container {
+      background-color: rgba(0, 10, 0, 0.6);
+      border: 1px solid #0dff00;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      border-radius: 0.5rem;
+      box-shadow: 0 0 15px rgba(13, 255, 0, 0.2);
+    }
+
+    /* Glitch animation for the main heading */
+    .glitch {
+      animation: glitch 1.5s linear infinite;
+    }
+
+    @keyframes glitch {
+
+      2%,
+      64% {
+        transform: translate(2px, 0) skew(0deg);
+      }
+
+      4%,
+      60% {
+        transform: translate(-2px, 0) skew(0deg);
+      }
+
+      62% {
+        transform: translate(0, 0) skew(5deg);
+      }
+    }
+
+    .glitch:before,
+    .glitch:after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .glitch:before {
+      left: 2px;
+      text-shadow: -2px 0 #ff00c1;
+      animation: glitch-anim-1 2.5s infinite linear reverse;
+    }
+
+    .glitch:after {
+      left: -2px;
+      text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+      animation: glitch-anim-2 2s infinite linear reverse;
+    }
+
+    @keyframes glitch-anim-1 {
+      0% {
+        clip-path: inset(5% 0 95% 0);
+      }
+
+      10% {
+        clip-path: inset(78% 0 1% 0);
+      }
+
+      20% {
+        clip-path: inset(92% 0 1% 0);
+      }
+
+      30% {
+        clip-path: inset(54% 0 33% 0);
+      }
+
+      40% {
+        clip-path: inset(1% 0 79% 0);
+      }
+
+      50% {
+        clip-path: inset(89% 0 7% 0);
+      }
+
+      60% {
+        clip-path: inset(45% 0 50% 0);
+      }
+
+      70% {
+        clip-path: inset(11% 0 83% 0);
+      }
+
+      80% {
+        clip-path: inset(70% 0 25% 0);
+      }
+
+      90% {
+        clip-path: inset(98% 0 1% 0);
+      }
+
+      100% {
+        clip-path: inset(70% 0 21% 0);
+      }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% {
+        clip-path: inset(98% 0 1% 0);
+      }
+
+      10% {
+        clip-path: inset(55% 0 35% 0);
+      }
+
+      20% {
+        clip-path: inset(35% 0 50% 0);
+      }
+
+      30% {
+        clip-path: inset(94% 0 3% 0);
+      }
+
+      40% {
+        clip-path: inset(45% 0 40% 0);
+      }
+
+      50% {
+        clip-path: inset(10% 0 80% 0);
+      }
+
+      60% {
+        clip-path: inset(95% 0 5% 0);
+      }
+
+      70% {
+        clip-path: inset(30% 0 65% 0);
+      }
+
+      80% {
+        clip-path: inset(5% 0 90% 0);
+      }
+
+      90% {
+        clip-path: inset(60% 0 30% 0);
+      }
+
+      100% {
+        clip-path: inset(90% 0 5% 0);
+      }
+    }
+
+    /* Scroll-in animation */
+    .reveal {
+      position: relative;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 1s all ease;
+    }
+
+    .reveal.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Profile Photo Styling */
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #0dff00;
+      box-shadow: 0 0 20px #0dff00;
+    }
+
+    /* Technology logo styling */
+    .tech-logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .tech-logo-container:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px #0dff00);
+    }
+
+    .tech-logo {
+      width: 48px;
+      height: 48px;
+      /* This CSS filter forces the images to be rendered in the theme's green color */
+      filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    }
+
+    /* Testimonial slider animation */
+    .slider {
+      display: flex;
+      flex-shrink: 0;
+      animation: slide 40s linear infinite;
+    }
+
+    .slider-wrapper:hover .slider {
+      animation-play-state: paused;
+    }
+
+    @keyframes slide {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    .testimonial-card {
+      flex-shrink: 0;
+      width: 350px;
+      /* Adjust width as needed */
+    }
+  </style>
+
+
+
+  <canvas id="matrix-canvas"></canvas>
+
+  <div class="relative min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="text-center">
+      <img src="public/profile.jpeg" alt="Muhammad Yousuf Iqbal Khan"
+        class="profile-photo mx-auto mb-6">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-glow glitch relative"
+        data-text="MUHAMMAD YOUSUF IQBAL KHAN">
+        MUHAMMAD YOUSUF IQBAL KHAN
+      </h1>
+      <p class="mt-4 text-xl md:text-2xl text-glow-dim tracking-widest">// BACKEND SOFTWARE ENGINEER</p>
+      <div class="mt-6 flex justify-center items-center gap-x-6">
+        <a href="mailto:m.youxuf@gmail.com"
+          class="text-connect-glow-dim hover:text-glow transition-all duration-300 text-lg">_email</a>
+        <a href="https://github.com/youxufkhan" target="_blank"
+          class="text-connect-glow-dim hover:text-glow transition-all duration-300 text-lg">_github</a>
+        <a href="https://linkedin.com/in/yousufiqbalkhan" target="_blank"
+          class="text-connect-glow-dim hover:text-glow transition-all duration-300 text-lg">_linkedin</a>
+      </div>
+      <nav class="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 md:gap-x-6">
+        <a href="#about" class="text-glow-dim hover:text-glow transition-all duration-300 text-lg">_summary</a>
+        <a href="#experience" class="text-glow-dim hover:text-glow transition-all duration-300 text-lg">_experience</a>
+        <a href="#skills" class="text-glow-dim hover:text-glow transition-all duration-300 text-lg">_skills</a>
+        <a href="#education" class="text-glow-dim hover:text-glow transition-all duration-300 text-lg">_education</a>
+        <a href="#technologies"
+          class="text-glow-dim hover:text-glow transition-all duration-300 text-lg">_technologies</a>
+        <a href="#testimonials"
+          class="text-glow-dim hover:text-glow transition-all duration-300 text-lg">_testimonials</a>
+        <a href="#contact" class="text-glow-dim hover:text-glow transition-all duration-300 text-lg">_connect</a>
+      </nav>
     </div>
-    <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="right-side">
-      <div class="pill-group">
-        @for (item of [
-          { title: 'Explore the Docs', link: 'https://angular.dev' },
-          { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },
-          { title: 'Prompt and best practices for AI', link: 'https://angular.dev/ai/develop-with-ai'},
-          { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },
-          { title: 'Angular Language Service', link: 'https://angular.dev/tools/language-service' },
-          { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools' },
-        ]; track item.title) {
-          <a
-            class="pill"
-            [href]="item.link"
-            target="_blank"
-            rel="noopener"
-          >
-            <span>{{ item.title }}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="14"
-              viewBox="0 -960 960 960"
-              width="14"
-              fill="currentColor"
-            >
-              <path
-                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
-              />
-            </svg>
-          </a>
-        }
-      </div>
-      <div class="social-links">
-        <a
-          href="https://github.com/angular/angular"
-          aria-label="Github"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg
-            width="25"
-            height="24"
-            viewBox="0 0 25 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Github"
-          >
-            <path
-              d="M12.3047 0C5.50634 0 0 5.50942 0 12.3047C0 17.7423 3.52529 22.3535 8.41332 23.9787C9.02856 24.0946 9.25414 23.7142 9.25414 23.3871C9.25414 23.0949 9.24389 22.3207 9.23876 21.2953C5.81601 22.0377 5.09414 19.6444 5.09414 19.6444C4.53427 18.2243 3.72524 17.8449 3.72524 17.8449C2.61064 17.082 3.81137 17.0973 3.81137 17.0973C5.04697 17.1835 5.69604 18.3647 5.69604 18.3647C6.79321 20.2463 8.57636 19.7029 9.27978 19.3881C9.39052 18.5924 9.70736 18.0499 10.0591 17.7423C7.32641 17.4347 4.45429 16.3765 4.45429 11.6618C4.45429 10.3185 4.9311 9.22133 5.72065 8.36C5.58222 8.04931 5.16694 6.79833 5.82831 5.10337C5.82831 5.10337 6.85883 4.77319 9.2121 6.36459C10.1965 6.09082 11.2424 5.95546 12.2883 5.94931C13.3342 5.95546 14.3801 6.09082 15.3644 6.36459C17.7023 4.77319 18.7328 5.10337 18.7328 5.10337C19.3942 6.79833 18.9789 8.04931 18.8559 8.36C19.6403 9.22133 20.1171 10.3185 20.1171 11.6618C20.1171 16.3888 17.2409 17.4296 14.5031 17.7321C14.9338 18.1012 15.3337 18.8559 15.3337 20.0084C15.3337 21.6552 15.3183 22.978 15.3183 23.3779C15.3183 23.7009 15.5336 24.0854 16.1642 23.9623C21.0871 22.3484 24.6094 17.7341 24.6094 12.3047C24.6094 5.50942 19.0999 0 12.3047 0Z"
-            />
-          </svg>
-        </a>
-        <a
-          href="https://twitter.com/angular"
-          aria-label="Twitter"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Twitter"
-          >
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-            />
-          </svg>
-        </a>
-        <a
-          href="https://www.youtube.com/channel/UCbn1OgGei-DV7aSRo_HaAiw"
-          aria-label="Youtube"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg
-            width="29"
-            height="20"
-            viewBox="0 0 29 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Youtube"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M27.4896 1.52422C27.9301 1.96749 28.2463 2.51866 28.4068 3.12258C29.0004 5.35161 29.0004 10 29.0004 10C29.0004 10 29.0004 14.6484 28.4068 16.8774C28.2463 17.4813 27.9301 18.0325 27.4896 18.4758C27.0492 18.9191 26.5 19.2389 25.8972 19.4032C23.6778 20 14.8068 20 14.8068 20C14.8068 20 5.93586 20 3.71651 19.4032C3.11363 19.2389 2.56449 18.9191 2.12405 18.4758C1.68361 18.0325 1.36732 17.4813 1.20683 16.8774C0.613281 14.6484 0.613281 10 0.613281 10C0.613281 10 0.613281 5.35161 1.20683 3.12258C1.36732 2.51866 1.68361 1.96749 2.12405 1.52422C2.56449 1.08095 3.11363 0.76113 3.71651 0.596774C5.93586 0 14.8068 0 14.8068 0C14.8068 0 23.6778 0 25.8972 0.596774C26.5 0.76113 27.0492 1.08095 27.4896 1.52422ZM19.3229 10L11.9036 5.77905V14.221L19.3229 10Z"
-            />
-          </svg>
-        </a>
-      </div>
+    <div class="absolute bottom-10 animate-bounce">
+      <a href="#about" aria-label="Scroll down">
+        <svg class="w-8 h-8 text-glow" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </a>
     </div>
   </div>
-</main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-<router-outlet />
+  <div class="container mx-auto px-4 py-12 space-y-16">
+
+    <!-- About Section -->
+    <section id="about" class="section-container p-6 md:p-8 reveal">
+      <h2 class="text-3xl font-bold text-glow mb-4">// SUMMARY_</h2>
+      <p class="text-lg leading-relaxed text-glow-dim">
+        Senior Software Engineer with over 7 years of experience building robust, scalable, and high-performance
+        APIs within microservices architectures. Expertise in Node.js frameworks like Express.js and Fastify.
+        Passionate about crafting efficient backend systems and leading and mentoring teams for successful
+        project delivery.
+      </p>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section-container p-6 md:p-8 reveal">
+      <h2 class="text-3xl font-bold text-glow mb-6">// WORK_EXPERIENCE_</h2>
+      <div class="space-y-8 relative border-l-2 border-green-500/50 pl-8">
+        <div class="absolute -left-[11px] top-1 w-5 h-5 bg-[#0dff00] rounded-full border-4 border-black"></div>
+        <div class="space-y-8">
+          <!-- Experience items here -->
+          <div class="reveal">
+            <h3 class="text-2xl font-semibold text-glow">Senior Software Engineer</h3>
+            <p class="text-lg text-glow-dim">Spursol (ValueLink Software)</p>
+            <p class="text-sm text-green-300/70">January 2025 - Present | Karachi, Pakistan</p>
+            <ul class="list-disc list-inside mt-3 text-glow-dim space-y-2">
+              <li>Engineered robust data solutions to ensure high availability and performance.</li>
+              <li>Collaborated with product managers and stakeholders to translate business requirements
+                into technical specifications.</li>
+              <li>Contributed solutions to achieve the company's app modernization goal.</li>
+              <li>Provided technical guidance and mentorship to team members.</li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3 class="text-2xl font-semibold text-glow">Senior Software Engineer</h3>
+            <p class="text-lg text-glow-dim">Bykea Technologies BV (Netherlands)</p>
+            <p class="text-sm text-green-300/70">January 2022 - January 2025 | Karachi, Pakistan</p>
+            <ul class="list-disc list-inside mt-3 text-glow-dim space-y-2">
+              <li>Participated in the entire application lifecycle, focusing on coding and debugging.</li>
+              <li>Led teams of engineers, overseeing daily scrums, code reviews, and system design
+                meetings.</li>
+              <li>Developed a localization microservice from scratch to support multiple languages.</li>
+              <li>Integrated a payment gateway and worked with PostgreSQL, MongoDB, and Redis.</li>
+              <li>Optimized application performance by identifying and eliminating slow and redundant
+                operations in APIs.</li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3 class="text-2xl font-semibold text-glow">Senior Software Engineer</h3>
+            <p class="text-lg text-glow-dim">Qavi Technologies</p>
+            <p class="text-sm text-green-300/70">December 2017 - January 2022 | Karachi, Pakistan</p>
+            <ul class="list-disc list-inside mt-3 text-glow-dim space-y-2">
+              <li>Designed, developed, and maintained features for a large-scale warehouse management
+                system (WMS).</li>
+              <li>Transitioned from frontend to full-stack development (PHP, Node.js).</li>
+              <li>Implemented a microservices architecture for the WMS.</li>
+              <li>Coordinated the migration of the WMS from DigitalOcean to AWS.</li>
+              <li>Progressed from intern to Senior Software Engineer and Team Lead.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section-container p-6 md:p-8 reveal">
+      <h2 class="text-3xl font-bold text-glow mb-6">// SKILLS_MATRIX_</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        <!-- Skills items here -->
+        <div>
+          <h3 class="text-xl text-glow mb-2">Programming</h3>
+          <p class="text-glow-dim">JavaScript, TypeScript, PHP, Go</p>
+        </div>
+        <div>
+          <h3 class="text-xl text-glow mb-2">Frameworks</h3>
+          <p class="text-glow-dim">Express.js, Fastify, Nest.js, Angular, Yii2, Laravel, Fiber</p>
+        </div>
+        <div>
+          <h3 class="text-xl text-glow mb-2">Database</h3>
+          <p class="text-glow-dim">PostgreSQL, MySQL, MongoDB, Redis</p>
+        </div>
+        <div>
+          <h3 class="text-xl text-glow mb-2">Message Broker</h3>
+          <p class="text-glow-dim">AWS SQS, RabbitMQ</p>
+        </div>
+        <div>
+          <h3 class="text-xl text-glow mb-2">Testing</h3>
+          <p class="text-glow-dim">Jest</p>
+        </div>
+        <div>
+          <h3 class="text-xl text-glow mb-2">Monitoring</h3>
+          <p class="text-glow-dim">Elastic APM</p>
+        </div>
+        <div>
+          <h3 class="text-xl text-glow mb-2">Containerization</h3>
+          <p class="text-glow-dim">Docker</p>
+        </div>
+        <div>
+          <h3 class="text-xl text-glow mb-2">Cloud</h3>
+          <p class="text-glow-dim">AWS</p>
+        </div>
+        <div>
+          <h3 class="text-xl text-glow mb-2">CI/CD & Tools</h3>
+          <p class="text-glow-dim">Git, Gitlab CI/CD, Github Actions, Jira</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section-container p-6 md:p-8 reveal">
+      <h2 class="text-3xl font-bold text-glow mb-6">// EDUCATION_</h2>
+      <div class="space-y-4">
+        <div>
+          <h3 class="text-xl font-semibold text-glow">Bachelor of Science, Computer Science</h3>
+          <p class="text-lg text-glow-dim">Sir Syed University of Engineering & Technology</p>
+          <p class="text-sm text-green-300/70">2016 - 2019 | Karachi, Pakistan</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-glow">Intermediate, Pre-Engineering</h3>
+          <p class="text-lg text-glow-dim">Govt. College for Boys (S.R.E Majeed)</p>
+          <p class="text-sm text-green-300/70">2012 - 2014 | Karachi, Pakistan</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technologies Section -->
+ 
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-container p-6 md:p-8 reveal overflow-hidden">
+      <h2 class="text-3xl font-bold text-glow mb-8">// TESTIMONIALS_</h2>
+      <div
+        class="slider-wrapper w-full inline-flex flex-nowrap [mask-image:_linear-gradient(to_right,transparent_0,_black_1rem,_black_calc(100%-1rem),transparent_100%)]">
+        <div class="slider">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card mx-4 p-6 border border-green-500/50 rounded-lg">
+            <a href="https://www.linkedin.com/in/eoinconway/" target="_blank" class="flex items-center mb-4 group">
+              <img src="public/testimonials/1.jpeg" alt="Eoin Conway"
+                class="w-16 h-16 rounded-full border-2 border-green-500/50 mr-4 group-hover:border-green-300 transition-all">
+              <div>
+                <h4 class="text-xl font-semibold text-glow-dim group-hover:text-glow transition-all">Eoin Conway</h4>
+                <p class="text-sm text-green-300/70">CEO at Canary7</p>
+              </div>
+            </a>
+            <p class="text-glow-dim italic">"Yousuf was a dedicated member the team, worked well under pressure and was
+              prepared to put the extra hours in whenever it was needed,"</p>
+          </div>
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card mx-4 p-6 border border-green-500/50 rounded-lg">
+            <a href="https://www.linkedin.com/in/shaheryarr/" target="_blank" class="flex items-center mb-4 group">
+              <img src="public/testimonials/2.jpeg" alt="Muhammad Shaheryar Khalid"
+                class="w-16 h-16 rounded-full border-2 border-green-500/50 mr-4 group-hover:border-green-300 transition-all">
+              <div>
+                <h4 class="text-xl font-semibold text-glow-dim group-hover:text-glow transition-all">Muhammad Shaheryar
+                  Khalid</h4>
+                <p class="text-sm text-green-300/70">SQA at Bykea Technologies</p>
+              </div>
+            </a>
+            <p class="text-glow-dim italic">"I had the pleasure of working with Muhammad Yousuf at Bykea, where he
+              consistently demonstrated exceptional ownership and commitment to every task. His problem-solving skills
+              and dedication to delivering high-quality solutions made a significant impact on our team’s success.
+              Yousuf’s ability to take initiative and collaborate effectively sets him apart as a reliable and skilled
+              engineer. I highly recommend him for any role that values technical expertise, responsibility, and
+              teamwork."</p>
+          </div>
+          <!-- Testimonial 3 -->
+          <div class="testimonial-card mx-4 p-6 border border-green-500/50 rounded-lg">
+            <a href="https://www.linkedin.com/in/auasad/" target="_blank" class="flex items-center mb-4 group">
+              <img src="public/testimonials/3.jpeg" alt="Asad Ullah"
+                class="w-16 h-16 rounded-full border-2 border-green-500/50 mr-4 group-hover:border-green-300 transition-all">
+              <div>
+                <h4 class="text-xl font-semibold text-glow-dim group-hover:text-glow transition-all">Asad Ullah</h4>
+                <p class="text-sm text-green-300/70">DevOps Lead at Qavi Tech</p>
+              </div>
+            </a>
+            <p class="text-glow-dim italic">"Yousuf was not just a colleague but also a good friend of mine. I worked
+              with many professionals throughout my career but he was a unique one, a man with pristine work ethics. His
+              expertise as a developer is considerable, he is easily adjustable to any given situation."</p>
+          </div>
+        </div>
+        <div class="slider" aria-hidden="true">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card mx-4 p-6 border border-green-500/50 rounded-lg">
+            <a href="https://www.linkedin.com/in/h-hassan-sde/" target="_blank" class="flex items-center mb-4 group">
+              <img src="public/testimonials/4.jpeg" alt="Hammad Hassan Bajwa"
+                class="w-16 h-16 rounded-full border-2 border-green-500/50 mr-4 group-hover:border-green-300 transition-all">
+              <div>
+                <h4 class="text-xl font-semibold text-glow-dim group-hover:text-glow transition-all">Hammad Hassan Bajwa
+                </h4>
+                <p class="text-sm text-green-300/70">Software Engineer at sMOTIVE GmbH</p>
+              </div>
+            </a>
+            <p class="text-glow-dim italic">"Yousuf is one of the most talented guy I've seen my at my workplace who
+              inspires juniors with his great work ethics. I recommend him 💯."</p>
+          </div>
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card mx-4 p-6 border border-green-500/50 rounded-lg">
+            <a href="https://www.linkedin.com/in/neerajbatheja/" target="_blank" class="flex items-center mb-4 group">
+              <img src="public/testimonials/5.jpeg" alt="Neeraj Bhateja"
+                class="w-16 h-16 rounded-full border-2 border-green-500/50 mr-4 group-hover:border-green-300 transition-all">
+              <div>
+                <h4 class="text-xl font-semibold text-glow-dim group-hover:text-glow transition-all">Neeraj Bhateja</h4>
+                <p class="text-sm text-green-300/70">Senior Software Engineer at State Bank of Pakistan</p>
+              </div>
+            </a>
+            <p class="text-glow-dim italic">"I have been working with yousuf for past 4 months at Bykea ( Delivery
+              Vertical ) , He is really passionate and technical guy , whether its back-end or front-end he perform well
+              and he helps me a lot throughout these 4 months."</p>
+          </div>
+          <!-- Testimonial 3 -->
+          <div class="testimonial-card mx-4 p-6 border border-green-500/50 rounded-lg">
+            <a href="https://www.linkedin.com/in/raza-anis/" target="_blank" class="flex items-center mb-4 group">
+              <img src="public/testimonials/6.jpeg" alt="Raza Anis"
+                class="w-16 h-16 rounded-full border-2 border-green-500/50 mr-4 group-hover:border-green-300 transition-all">
+              <div>
+                <h4 class="text-xl font-semibold text-glow-dim group-hover:text-glow transition-all">Raza Anis</h4>
+                <p class="text-sm text-green-300/70">Senior Software Engineer at Emirates NBD</p>
+              </div>
+            </a>
+            <p class="text-glow-dim italic">"Yousuf is an excellent resource, and a master at JS Fullstack Development
+              has been a real gem to work with. He makes sure all the deadlines meet and that also with the highest
+              standards. He is a hardworking and dedicated person who will complete your project in a given time frame.
+              I would recommend and endorse Yousuf."</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-container p-6 md:p-8 reveal">
+      <h2 class="text-3xl font-bold text-glow mb-6">// CONNECT_</h2>
+      <div class="flex flex-wrap gap-6 items-center">
+        <a href="mailto:m.youxuf@gmail.com"
+          class="text-glow-dim hover:text-glow transition-all duration-300">m.youxuf@gmail.com</a>
+        <span class="text-glow-dim hidden md:inline">|</span>
+        <a href="https://linkedin.com/in/yousufiqbalkhan" target="_blank"
+          class="text-glow-dim hover:text-glow transition-all duration-300">LinkedIn</a>
+        <span class="text-glow-dim hidden md:inline">|</span>
+        <a href="https://github.com/youxufkhan" target="_blank"
+          class="text-glow-dim hover:text-glow transition-all duration-300">GitHub</a>
+      </div>
+    </section>
+  </div>
+
+  <footer class="text-center p-6 text-sm text-green-300/50">
+    <p>Initializing connection... Handshake complete. Welcome.</p>
+    <p>&copy; 2025 Muhammad Yousuf Iqbal Khan. All rights reserved.</p>
+  </footer>
+
+
+  <!-- <script>
+    // Matrix Rain Effect
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const nums = '0123456789';
+    const characters = katakana + latin + nums;
+    const fontSize = 16;
+    const columns = Math.floor(canvas.width / fontSize);
+    const rainDrops = [];
+    for (let i = 0; i < columns; i++) {
+      rainDrops[i] = 1;
+    }
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0dff00';
+      ctx.font = fontSize + 'px monospace';
+      for (let i = 0; i < rainDrops.length; i++) {
+        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
+      }
+    }
+    setInterval(drawMatrix, 50);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const newColumns = Math.floor(canvas.width / fontSize);
+      rainDrops.length = 0;
+      for (let i = 0; i < newColumns; i++) {
+        rainDrops[i] = 1;
+      }
+    });
+
+    // Scroll Reveal Animation
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const elementVisible = 150;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add('active');
+        }
+      }
+    }
+    window.addEventListener('scroll', reveal);
+    reveal();
+  </script> -->
+
+
