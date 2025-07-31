@@ -18,7 +18,7 @@
     <app-about [summary]="profile && !profileError ? profile.summary : staticSummary"></app-about>
 
     <!-- Experience Section -->
-    <app-experience ></app-experience>
+    <app-experience [experiences]="mappedExperiences"></app-experience>
 
     <!-- Skills Section -->
     <app-skills></app-skills>

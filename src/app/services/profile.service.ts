@@ -3,6 +3,27 @@ import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { StrapiClientService } from './strapi-client.service';
 
+// Job bullet interface for experience items
+export interface JobBullet {
+  id: number;
+  text: string;
+}
+
+// Experience interface for profile experiences
+export interface Experience {
+  id: number;
+  documentId: string;
+  title: string;
+  companyName: string;
+  startDate: string;
+  endDate: string | null;
+  location: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  jobBullets: JobBullet[];
+}
+
 // Profile model matching the Strapi /profile single entry response
 export interface Profile {
   id: number;
@@ -14,6 +35,7 @@ export interface Profile {
   publishedAt: string;
   locale: string;
   summary: string;
+  experiences: Experience[];
   profilePic?: {
     id: number;
     name: string;
@@ -52,8 +74,11 @@ export class ProfileService {
    * @returns Observable<ProfileResponse>
    */
   getProfile(): Observable<ProfileResponse> {
-    // Create params to populate the profilePic field
-    const params = new HttpParams().set('populate', 'profilePic');
+    // Create params to populate the profilePic field and experiences with their jobBullets
+    // Using Strapi's nested populate syntax for relations
+    const params = new HttpParams()
+      .set('populate[profilePic]', 'true')
+      .set('populate[experiences][populate]', 'jobBullets');
     
     return this.strapi.get<ProfileResponse>('/profile', params);
   }

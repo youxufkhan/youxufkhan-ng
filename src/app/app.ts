@@ -9,9 +9,19 @@ import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { ProfileService, Profile, ProfileResponse } from './services/profile.service';
+import { ProfileService, Profile, ProfileResponse, Experience } from './services/profile.service';
 import { DatePipe, CommonModule, NgIf } from '@angular/common';
 import { environment } from '../environments/environment';
+
+// Simplified experience interface for the component
+export interface SimpleExperience {
+  title: string;
+  companyName: string;
+  startDate: string;
+  endDate: string | null;
+  location: string;
+  jobBullets: string[];
+}
 
 @Component({
   selector: 'app-root',
@@ -29,6 +39,9 @@ export class App implements OnInit {
   public staticSummary: string = `Senior Software Engineer with over 7 years of experience building robust, scalable, and high-performance\nAPIs within microservices architectures. Expertise in Node.js frameworks like Express.js and Fastify.\nPassionate about crafting efficient backend systems and leading and mentoring teams for successful\nproject delivery.`;
   public defaultTitle: string = 'BACKEND SOFTWARE ENGINEER';
   public profilePictureUrl: string = '';
+  
+  // Mapped experiences for the experience component
+  public mappedExperiences: SimpleExperience[] = [];
 
   constructor(private profileService: ProfileService) {}
 
@@ -38,6 +51,28 @@ export class App implements OnInit {
   getProfilePicUrl(relativeUrl: string | undefined): string {
     if (!relativeUrl) return '';
     return `${environment.strapiBaseUrl}${relativeUrl}`;
+  }
+
+  /**
+   * Map experiences from the profile response to a simpler format for the component
+   */
+  private mapExperiences(experiences: Experience[]): SimpleExperience[] {
+    return experiences.map(exp => ({
+      title: exp.title,
+      companyName: exp.companyName,
+      startDate: exp.startDate,
+      endDate: exp.endDate,
+      location: exp.location,
+      jobBullets: exp.jobBullets.map(bullet => bullet.text)
+    }));
+  }
+
+  /**
+   * Format date for display
+   */
+  private formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
   }
 
   ngOnInit(): void {
@@ -51,6 +86,12 @@ export class App implements OnInit {
       next: (res: ProfileResponse) => {
         this.profile = res.data;
         this.profilePictureUrl = this.getProfilePicUrl(this.profile?.profilePic?.url);
+        
+        // Map experiences if they exist
+        if (this.profile?.experiences) {
+          this.mappedExperiences = this.mapExperiences(this.profile.experiences);
+        }
+        
         this.profileLoading = false;
       },
       error: (err) => {
