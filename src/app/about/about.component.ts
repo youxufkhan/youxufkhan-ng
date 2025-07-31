@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
-  // Component logic can be added here if needed
+  @Input() summary: string = `Senior Software Engineer with over 7 years of experience building robust, scalable, and high-performance
+APIs within microservices architectures. Expertise in Node.js frameworks like Express.js and Fastify.
+Passionate about crafting efficient backend systems and leading and mentoring teams for successful
+project delivery.`;
 } 

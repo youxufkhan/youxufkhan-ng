@@ -1,4 +1,4 @@
-import { Component, signal, HostListener, AfterViewInit } from '@angular/core';
+import { Component, signal, HostListener, AfterViewInit, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { ExperienceComponent } from './experience/experience.component';
@@ -9,15 +9,57 @@ import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { ProfileService, Profile, ProfileResponse } from './services/profile.service';
+import { DatePipe, CommonModule, NgIf } from '@angular/common';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent, ContactComponent, FooterComponent, ProfileComponent, NavigationComponent],
+  imports: [CommonModule, NgIf, RouterOutlet, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent, ContactComponent, FooterComponent, ProfileComponent, NavigationComponent, DatePipe],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('youxufkhan-ng');
+
+  // Profile data state
+  profile: Profile | null = null;
+  profileLoading = false;
+  profileError: string | null = null;
+  public staticSummary: string = `Senior Software Engineer with over 7 years of experience building robust, scalable, and high-performance\nAPIs within microservices architectures. Expertise in Node.js frameworks like Express.js and Fastify.\nPassionate about crafting efficient backend systems and leading and mentoring teams for successful\nproject delivery.`;
+  public defaultTitle: string = 'BACKEND SOFTWARE ENGINEER';
+  public profilePictureUrl: string = '';
+
+  constructor(private profileService: ProfileService) {}
+
+  /**
+   * Get the full URL for the profile picture by combining the Strapi base URL with the relative path
+   */
+  getProfilePicUrl(relativeUrl: string | undefined): string {
+    if (!relativeUrl) return '';
+    return `${environment.strapiBaseUrl}${relativeUrl}`;
+  }
+
+  ngOnInit(): void {
+    this.fetchProfile();
+  }
+
+  fetchProfile(): void {
+    this.profileLoading = true;
+    this.profileError = null;
+    this.profileService.getProfile().subscribe({
+      next: (res: ProfileResponse) => {
+        this.profile = res.data;
+        this.profilePictureUrl = this.getProfilePicUrl(this.profile?.profilePic?.url);
+        this.profileLoading = false;
+      },
+      error: (err) => {
+        this.profileError = 'Failed to load profile.';
+        this.profileLoading = false;
+        console.error('Profile fetch error:', err);
+      }
+    });
+  }
 
   private canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavigationComponent } from '../navigation/navigation.component';
 
 @Component({
@@ -8,5 +8,7 @@ import { NavigationComponent } from '../navigation/navigation.component';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+  @Input() title: string = 'BACKEND SOFTWARE ENGINEER';
+  @Input() profilePictureUrl: string = '';
   // Component logic can be added here if needed
 } 
