@@ -2,15 +2,11 @@
 <section id="education" class="section-container p-6 md:p-8 reveal mb-16">
   <h2 class="text-3xl font-bold text-glow mb-6">// EDUCATION_</h2>
   <div class="space-y-4">
-    <div>
-      <h3 class="text-xl font-semibold text-glow">Bachelor of Science, Computer Science</h3>
-      <p class="text-lg text-glow-dim">Sir Syed University of Engineering & Technology</p>
-      <p class="text-sm text-green-300/70">2016 - 2019 | Karachi, Pakistan</p>
-    </div>
-    <div>
-      <h3 class="text-xl font-semibold text-glow">Intermediate, Pre-Engineering</h3>
-      <p class="text-lg text-glow-dim">Govt. College for Boys (S.R.E Majeed)</p>
-      <p class="text-sm text-green-300/70">2012 - 2014 | Karachi, Pakistan</p>
+    <!-- Dynamic Education items -->
+    <div *ngFor="let edu of displayEducation">
+      <h3 class="text-xl font-semibold text-glow">{{ edu.degree }}, {{ edu.fieldOfStudy }}</h3>
+      <p class="text-lg text-glow-dim">{{ edu.instituteName }}</p>
+      <p class="text-sm text-green-300/70">{{ getDateRange(edu.startDate, edu.endDate) }} | {{ edu.location }}</p>
     </div>
   </div>
 </section> 

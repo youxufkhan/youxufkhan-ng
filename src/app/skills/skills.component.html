@@ -2,42 +2,10 @@
 <section id="skills" class="section-container p-6 md:p-8 reveal mb-16">
   <h2 class="text-3xl font-bold text-glow mb-6">// SKILLS_MATRIX_</h2>
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-    <!-- Skills items here -->
-    <div>
-      <h3 class="text-xl text-glow mb-2">Programming</h3>
-      <p class="text-glow-dim">JavaScript, TypeScript, PHP, Go</p>
-    </div>
-    <div>
-      <h3 class="text-xl text-glow mb-2">Frameworks</h3>
-      <p class="text-glow-dim">Express.js, Fastify, Nest.js, Angular, Yii2, Laravel, Fiber</p>
-    </div>
-    <div>
-      <h3 class="text-xl text-glow mb-2">Database</h3>
-      <p class="text-glow-dim">PostgreSQL, MySQL, MongoDB, Redis</p>
-    </div>
-    <div>
-      <h3 class="text-xl text-glow mb-2">Message Broker</h3>
-      <p class="text-glow-dim">AWS SQS, RabbitMQ</p>
-    </div>
-    <div>
-      <h3 class="text-xl text-glow mb-2">Testing</h3>
-      <p class="text-glow-dim">Jest</p>
-    </div>
-    <div>
-      <h3 class="text-xl text-glow mb-2">Monitoring</h3>
-      <p class="text-glow-dim">Elastic APM</p>
-    </div>
-    <div>
-      <h3 class="text-xl text-glow mb-2">Containerization</h3>
-      <p class="text-glow-dim">Docker</p>
-    </div>
-    <div>
-      <h3 class="text-xl text-glow mb-2">Cloud</h3>
-      <p class="text-glow-dim">AWS</p>
-    </div>
-    <div>
-      <h3 class="text-xl text-glow mb-2">CI/CD & Tools</h3>
-      <p class="text-glow-dim">Git, Gitlab CI/CD, Github Actions, Jira</p>
+    <!-- Dynamic Skills items -->
+    <div *ngFor="let skillCategory of displaySkills">
+      <h3 class="text-xl text-glow mb-2">{{ skillCategory.type }}</h3>
+      <p class="text-glow-dim">{{ skillCategory.skills.join(', ') }}</p>
     </div>
   </div>
 </section> 

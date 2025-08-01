@@ -24,6 +24,75 @@ export interface Experience {
   jobBullets: JobBullet[];
 }
 
+// Skill item interface
+export interface SkillItem {
+  id: number;
+  text: string;
+}
+
+// Skill category interface
+export interface SkillCategory {
+  id: number;
+  documentId: string;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  skills: SkillItem[];
+}
+
+// Education interface for profile education
+export interface Education {
+  id: number;
+  documentId: string;
+  instituteName: string;
+  degree: string;
+  fieldOfStudy: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+// Testimonial image interface
+export interface TestimonialImage {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText?: string;
+  caption?: string;
+  width: number;
+  height: number;
+  formats?: any;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: string;
+  provider: string;
+  provider_metadata?: any;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+// Testimonial interface for profile testimonials
+export interface Testimonial {
+  id: number;
+  documentId: string;
+  name: string;
+  title: string;
+  url: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  image: TestimonialImage;
+}
+
 // Profile model matching the Strapi /profile single entry response
 export interface Profile {
   id: number;
@@ -36,6 +105,9 @@ export interface Profile {
   locale: string;
   summary: string;
   experiences: Experience[];
+  skills: SkillCategory[];
+  educations: Education[];
+  testimonials: Testimonial[];
   profilePic?: {
     id: number;
     name: string;
@@ -78,7 +150,10 @@ export class ProfileService {
     // Using Strapi's nested populate syntax for relations
     const params = new HttpParams()
       .set('populate[profilePic]', 'true')
-      .set('populate[experiences][populate]', 'jobBullets');
+      .set('populate[experiences][populate]', 'jobBullets')
+      .set('populate[skills][populate]', 'skills')
+      .set('populate[educations]', 'true')
+      .set('populate[testimonials][populate]', 'image');
     
     return this.strapi.get<ProfileResponse>('/profile', params);
   }

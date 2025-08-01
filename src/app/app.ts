@@ -9,7 +9,7 @@ import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { ProfileService, Profile, ProfileResponse, Experience } from './services/profile.service';
+import { ProfileService, Profile, ProfileResponse, Experience, SkillCategory, Education, Testimonial } from './services/profile.service';
 import { DatePipe, CommonModule, NgIf } from '@angular/common';
 import { environment } from '../environments/environment';
 
@@ -21,6 +21,31 @@ export interface SimpleExperience {
   endDate: string | null;
   location: string;
   jobBullets: string[];
+}
+
+// Simplified skill category interface for the component
+export interface SimpleSkillCategory {
+  type: string;
+  skills: string[];
+}
+
+// Simplified education interface for the component
+export interface SimpleEducation {
+  degree: string;
+  fieldOfStudy: string;
+  instituteName: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+}
+
+// Simplified testimonial interface for the component
+export interface SimpleTestimonial {
+  name: string;
+  title: string;
+  url: string;
+  content: string;
+  imageUrl: string;
 }
 
 @Component({
@@ -42,6 +67,15 @@ export class App implements OnInit {
   
   // Mapped experiences for the experience component
   public mappedExperiences: SimpleExperience[] = [];
+  
+  // Mapped skills for the skills component
+  public mappedSkills: SimpleSkillCategory[] = [];
+  
+  // Mapped education for the education component
+  public mappedEducation: SimpleEducation[] = [];
+  
+  // Mapped testimonials for the testimonials component
+  public mappedTestimonials: SimpleTestimonial[] = [];
 
   constructor(private profileService: ProfileService) {}
 
@@ -68,6 +102,43 @@ export class App implements OnInit {
   }
 
   /**
+   * Map skills from the profile response to a simpler format for the component
+   */
+  private mapSkills(skills: SkillCategory[]): SimpleSkillCategory[] {
+    return skills.map(skillCategory => ({
+      type: skillCategory.type,
+      skills: skillCategory.skills.map(skill => skill.text)
+    }));
+  }
+
+  /**
+   * Map education from the profile response to a simpler format for the component
+   */
+  private mapEducation(educations: Education[]): SimpleEducation[] {
+    return educations.map(edu => ({
+      degree: edu.degree,
+      fieldOfStudy: edu.fieldOfStudy,
+      instituteName: edu.instituteName,
+      startDate: edu.startDate,
+      endDate: edu.endDate,
+      location: edu.location
+    }));
+  }
+
+  /**
+   * Map testimonials from the profile response to a simpler format for the component
+   */
+  private mapTestimonials(testimonials: Testimonial[]): SimpleTestimonial[] {
+    return testimonials.map(testimonial => ({
+      name: testimonial.name,
+      title: testimonial.title,
+      url: testimonial.url,
+      content: testimonial.content,
+      imageUrl: this.getProfilePicUrl(testimonial.image?.url)
+    }));
+  }
+
+  /**
    * Format date for display
    */
   private formatDate(dateString: string): string {
@@ -90,6 +161,21 @@ export class App implements OnInit {
         // Map experiences if they exist
         if (this.profile?.experiences) {
           this.mappedExperiences = this.mapExperiences(this.profile.experiences);
+        }
+        
+        // Map skills if they exist
+        if (this.profile?.skills) {
+          this.mappedSkills = this.mapSkills(this.profile.skills);
+        }
+        
+        // Map education if it exists
+        if (this.profile?.educations) {
+          this.mappedEducation = this.mapEducation(this.profile.educations);
+        }
+        
+        // Map testimonials if they exist
+        if (this.profile?.testimonials) {
+          this.mappedTestimonials = this.mapTestimonials(this.profile.testimonials);
         }
         
         this.profileLoading = false;
