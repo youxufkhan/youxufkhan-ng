@@ -1,11 +1,11 @@
 <!-- Skills Section -->
 <section id="skills" class="section-container p-6 md:p-8 reveal mb-16">
   <h2 class="text-3xl font-bold text-glow mb-6">// SKILLS_MATRIX_</h2>
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-full">
     <!-- Dynamic Skills items -->
-    <div *ngFor="let skillCategory of displaySkills">
-      <h3 class="text-xl text-glow mb-2">{{ skillCategory.type }}</h3>
-      <p class="text-glow-dim">{{ skillCategory.skills.join(', ') }}</p>
+    <div class="skill-category p-4" *ngFor="let skillCategory of displaySkills">
+      <h3 class="text-lg md:text-xl text-glow mb-2 break-words">{{ skillCategory.type }}</h3>
+      <p class="text-sm md:text-base text-glow-dim break-words leading-relaxed">{{ skillCategory.skills.join(', ') }}</p>
     </div>
   </div>
 </section> 

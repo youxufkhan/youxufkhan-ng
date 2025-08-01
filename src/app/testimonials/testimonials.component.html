@@ -1,35 +1,42 @@
 <!-- Testimonials Section -->
-<section id="testimonials" class="section-container p-6 md:p-8 reveal overflow-hidden mb-16">
+<section id="testimonials" class="section-container p-6 md:p-8 reveal mb-16">
   <h2 class="text-3xl font-bold text-glow mb-8">// TESTIMONIALS_</h2>
-  <div
-    class="slider-wrapper w-full inline-flex flex-nowrap [mask-image:_linear-gradient(to_right,transparent_0,_black_1rem,_black_calc(100%-1rem),transparent_100%)]">
-    <div class="slider">
-      <!-- Dynamic Testimonials - First Group -->
-      <div class="testimonial-card mx-4 p-6 border border-green-500/50 rounded-lg" *ngFor="let testimonial of firstSliderGroup">
-        <a [href]="testimonial.url" target="_blank" class="flex items-center mb-4 group">
-          <img [src]="testimonial.imageUrl" [alt]="testimonial.name"
-            class="w-16 h-16 rounded-full border-2 border-green-500/50 mr-4 group-hover:border-green-300 transition-all">
-          <div>
-            <h4 class="text-xl font-semibold text-glow-dim group-hover:text-glow transition-all">{{ testimonial.name }}</h4>
-            <p class="text-sm text-green-300/70">{{ testimonial.title }}</p>
-          </div>
-        </a>
-        <p class="text-glow-dim italic">"{{ testimonial.content }}"</p>
-      </div>
-    </div>
-    <div class="slider" aria-hidden="true">
-      <!-- Dynamic Testimonials - Second Group -->
-      <div class="testimonial-card mx-4 p-6 border border-green-500/50 rounded-lg" *ngFor="let testimonial of secondSliderGroup">
-        <a [href]="testimonial.url" target="_blank" class="flex items-center mb-4 group">
-          <img [src]="testimonial.imageUrl" [alt]="testimonial.name"
-            class="w-16 h-16 rounded-full border-2 border-green-500/50 mr-4 group-hover:border-green-300 transition-all">
-          <div>
-            <h4 class="text-xl font-semibold text-glow-dim group-hover:text-glow transition-all">{{ testimonial.name }}</h4>
-            <p class="text-sm text-green-300/70">{{ testimonial.title }}</p>
-          </div>
-        </a>
-        <p class="text-glow-dim italic">"{{ testimonial.content }}"</p>
-      </div>
+  
+  <!-- Navigation Controls -->
+  <div class="flex justify-between items-center mb-6">
+    <button 
+      (click)="previousPage()" 
+      [disabled]="!canGoPrevious"
+      class="testimonials-nav-btn"
+      aria-label="Previous testimonials">
+      <svg class="testimonials-nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    
+    <button 
+      (click)="nextPage()" 
+      [disabled]="!canGoNext"
+      class="testimonials-nav-btn"
+      aria-label="Next testimonials">
+      <svg class="testimonials-nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Testimonials Grid -->
+  <div class="testimonials-grid">
+    <div class="testimonial-card testimonial-card-container" *ngFor="let testimonial of currentTestimonials">
+      <a [href]="testimonial.url" target="_blank" class="testimonial-link group">
+        <img [src]="testimonial.imageUrl" [alt]="testimonial.name"
+          class="testimonial-image">
+        <div class="testimonial-text-container">
+          <h4 class="testimonial-name text-glow-dim group-hover:text-glow">{{ testimonial.name }}</h4>
+          <p class="testimonial-title">{{ testimonial.title }}</p>
+        </div>
+      </a>
+      <p class="testimonial-content text-glow-dim">"{{ testimonial.content }}"</p>
     </div>
   </div>
 </section> 

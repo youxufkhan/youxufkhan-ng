@@ -12,6 +12,10 @@ import { SimpleTestimonial } from '../app';
 export class TestimonialsComponent {
   @Input() testimonials: SimpleTestimonial[] = [];
 
+  // Current page for pagination
+  currentPage = 0;
+  testimonialsPerPage = 3;
+
   // Fallback testimonials data when API doesn't return any testimonials
   private fallbackTestimonials: SimpleTestimonial[] = [
     {
@@ -66,13 +70,56 @@ export class TestimonialsComponent {
   }
 
   /**
-   * Split testimonials into two groups for the slider effect
+   * Get current page testimonials
    */
-  get firstSliderGroup(): SimpleTestimonial[] {
-    return this.displayTestimonials.slice(0, 3);
+  get currentTestimonials(): SimpleTestimonial[] {
+    const startIndex = this.currentPage * this.testimonialsPerPage;
+    return this.displayTestimonials.slice(startIndex, startIndex + this.testimonialsPerPage);
   }
 
-  get secondSliderGroup(): SimpleTestimonial[] {
-    return this.displayTestimonials.slice(3, 6);
+  /**
+   * Get total number of pages
+   */
+  get totalPages(): number {
+    return Math.ceil(this.displayTestimonials.length / this.testimonialsPerPage);
+  }
+
+  /**
+   * Check if previous button should be enabled
+   */
+  get canGoPrevious(): boolean {
+    return this.currentPage > 0;
+  }
+
+  /**
+   * Check if next button should be enabled
+   */
+  get canGoNext(): boolean {
+    return this.currentPage < this.totalPages - 1;
+  }
+
+  /**
+   * Go to previous page
+   */
+  previousPage(): void {
+    if (this.canGoPrevious) {
+      this.currentPage--;
+    }
+  }
+
+  /**
+   * Go to next page
+   */
+  nextPage(): void {
+    if (this.canGoNext) {
+      this.currentPage++;
+    }
+  }
+
+  /**
+   * Get array of page numbers for indicators
+   */
+  getPageNumbers(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i);
   }
 } 
