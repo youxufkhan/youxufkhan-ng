@@ -1,0 +1,61 @@
+/* Navigation component specific styles */
+/* All styles are now in the global styles.css file */
+
+/* Navigation separator styling */
+.nav-separator {
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, #0dff00, transparent);
+  margin: 0 8px;
+  opacity: 0.6;
+}
+
+/* Border glow effect for navigation links */
+.border-glow {
+  border-color: #0dff00 !important;
+  box-shadow: 0 0 5px rgba(13, 255, 0, 0.3), inset 0 0 5px rgba(13, 255, 0, 0.1);
+}
+
+/* Navigation link styling with blur effect */
+.nav-link {
+  background: linear-gradient(135deg, rgba(13, 255, 0, 0.05), rgba(13, 255, 0, 0.02));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+/* Navigation link hover effects */
+.nav-link:hover {
+  background: linear-gradient(135deg, rgba(13, 255, 0, 0.15), rgba(13, 255, 0, 0.08));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13, 255, 0, 0.2);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+  .nav-link {
+    min-height: 44px; /* Touch-friendly minimum height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1px;
+    white-space: nowrap;
+    font-size: 0.875rem; /* 14px */
+  }
+  
+  /* Ensure proper wrapping on very small screens */
+  nav {
+    max-width: 100vw;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .nav-link {
+    font-size: 0.75rem; /* 12px */
+    padding: 0.25rem 0.5rem !important;
+  }
+} 

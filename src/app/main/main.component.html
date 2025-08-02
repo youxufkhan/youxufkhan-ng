@@ -1,0 +1,35 @@
+<app-loader></app-loader>
+
+<canvas id="matrix-canvas"></canvas>
+ 
+<!-- Profile Section -->
+<app-profile  [title]="profile && !profileError ? profile.title : defaultTitle" [profilePictureUrl]="profilePictureUrl"></app-profile>
+
+<div class="container mx-auto px-4 py-12 space-y-16">
+
+  <!-- About Section -->
+  <app-about [summary]="profile && !profileError ? profile.summary : staticSummary"></app-about>
+
+  <!-- Experience Section -->
+  <app-experience [experiences]="mappedExperiences"></app-experience>
+
+  <!-- Skills Section -->
+  <app-skills [skills]="mappedSkills"></app-skills>
+
+  <!-- Education Section -->
+  <app-education [education]="mappedEducation"></app-education>
+
+  <!-- Technologies Section -->
+  <app-technologies></app-technologies>
+
+  <!-- Testimonials Section -->
+  <app-testimonials [testimonials]="mappedTestimonials"></app-testimonials>
+
+  <!-- Contact Section -->
+  <app-contact></app-contact>
+
+</div>
+
+<app-footer></app-footer>
+
+<app-matrix-cursor></app-matrix-cursor> 
