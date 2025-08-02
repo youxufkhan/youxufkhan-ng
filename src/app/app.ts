@@ -12,6 +12,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ProfileService, Profile, ProfileResponse, Experience, SkillCategory, Education, Testimonial } from './services/profile.service';
 import { DatePipe, CommonModule, NgIf } from '@angular/common';
 import { environment } from '../environments/environment';
+import { TechnologiesComponent } from './technologies/technologies.component';
+import { MatrixCursorComponent } from "./matrix-cursor/matrix-cursor";
 
 // Simplified experience interface for the component
 export interface SimpleExperience {
@@ -50,7 +52,7 @@ export interface SimpleTestimonial {
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, NgIf, RouterOutlet, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent, ContactComponent, FooterComponent, ProfileComponent, NavigationComponent, DatePipe],
+  imports: [CommonModule, NgIf, RouterOutlet, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent, ContactComponent, FooterComponent, ProfileComponent, TechnologiesComponent, NavigationComponent, DatePipe, MatrixCursorComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -84,6 +86,7 @@ export class App implements OnInit {
    */
   getProfilePicUrl(relativeUrl: string | undefined): string {
     if (!relativeUrl) return '';
+    return relativeUrl;
     return `${environment.strapiBaseUrl}${relativeUrl}`;
   }
 

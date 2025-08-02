@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  strapiBaseUrl: 'http://localhost:1337'
+  strapiBaseUrl: 'https://inspired-star-7c87bc5baa.strapiapp.com'
 }; 
