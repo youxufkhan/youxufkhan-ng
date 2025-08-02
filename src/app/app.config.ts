@@ -4,11 +4,9 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { ProfileService } from './main/services/profile.service';
-import { LoaderService } from './main/services/loader.service';
-import { MatrixEffectService } from './main/services/matrix-effect.service';
-import { ScrollRevealService } from './main/services/scroll-reveal.service';
 import { DataMappingService } from './main/services/data-mapping.service';
 import { StrapiClientService } from './main/services/strapi-client.service';
+import { LoaderService, MatrixEffectService, ScrollRevealService } from './shared';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,10 +15,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     ProfileService,
+    DataMappingService,
+    StrapiClientService,
     LoaderService,
     MatrixEffectService,
-    ScrollRevealService,
-    DataMappingService,
-    StrapiClientService
+    ScrollRevealService
   ]
 };

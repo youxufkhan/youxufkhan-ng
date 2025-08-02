@@ -1,9 +1,7 @@
 import { Component, signal, HostListener, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileService, Profile, ProfileResponse } from './services/profile.service';
-import { LoaderService } from './services/loader.service';
-import { MatrixEffectService } from './services/matrix-effect.service';
-import { ScrollRevealService } from './services/scroll-reveal.service';
+import { LoaderService, MatrixEffectService, ScrollRevealService } from '../shared';
 import { DataMappingService, SimpleExperience, SimpleSkillCategory, SimpleEducation, SimpleTestimonial } from './services/data-mapping.service';
 
 // Import all components
@@ -16,8 +14,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
-import { MatrixCursorComponent } from './components/matrix-cursor/matrix-cursor';
-import { LoaderComponent } from './components/loader/loader.component';
+
+// Import shared components
+import { LoaderComponent, MatrixCursorComponent } from '../shared';
 
 @Component({
   selector: 'app-main',
@@ -33,8 +32,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     FooterComponent,
     ProfileComponent,
     TechnologiesComponent,
-    MatrixCursorComponent,
-    LoaderComponent
+    LoaderComponent,
+    MatrixCursorComponent
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
