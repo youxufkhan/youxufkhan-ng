@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 })
 export class MatrixCursorComponent implements AfterViewInit, OnDestroy {
   private mouseMoveListener!: (e: MouseEvent) => void;
+  private mouseEnterListener!: (e: MouseEvent) => void;
+  private mouseLeaveListener!: (e: MouseEvent) => void;
 
   ngAfterViewInit(): void {
     const customCursor = document.getElementById('custom-cursor');
@@ -45,14 +47,58 @@ export class MatrixCursorComponent implements AfterViewInit, OnDestroy {
           trailParticle.remove();
         }, 500);
       };
+
+      this.mouseEnterListener = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (this.isInteractiveElement(target)) {
+          customCursor.classList.add('cursor-clicker');
+        }
+      };
+
+      this.mouseLeaveListener = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (this.isInteractiveElement(target)) {
+          customCursor.classList.remove('cursor-clicker');
+        }
+      };
       
       document.addEventListener('mousemove', this.mouseMoveListener);
+      document.addEventListener('mouseenter', this.mouseEnterListener, true);
+      document.addEventListener('mouseleave', this.mouseLeaveListener, true);
     }
+  }
+
+  private isInteractiveElement(element: HTMLElement): boolean {
+    // Check if the element or any of its parents is interactive
+    let currentElement: HTMLElement | null = element;
+    while (currentElement) {
+      const tagName = currentElement.tagName.toLowerCase();
+      const className = currentElement.className || '';
+      
+      // Check for interactive elements
+      if (tagName === 'a' || tagName === 'button' || 
+          currentElement.onclick || 
+          currentElement.getAttribute('role') === 'button' ||
+          className.includes('nav-link') ||
+          className.includes('contact-link') ||
+          currentElement.style.cursor === 'pointer') {
+        return true;
+      }
+      
+      currentElement = currentElement.parentElement;
+    }
+    return false;
   }
 
   ngOnDestroy(): void {
     if (this.mouseMoveListener) {
       document.removeEventListener('mousemove', this.mouseMoveListener);
+    }
+    if (this.mouseEnterListener) {
+      document.removeEventListener('mouseenter', this.mouseEnterListener, true);
+    }
+    if (this.mouseLeaveListener) {
+      document.removeEventListener('mouseleave', this.mouseLeaveListener, true);
     }
   }
 }
