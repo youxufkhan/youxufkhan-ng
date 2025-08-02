@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SimpleSkillCategory } from '../services/data-mapping.service';
+import { SimpleSkillCategory } from '../../services/data-mapping.service';
 
 @Component({
   selector: 'app-skills',
-  templateUrl: './skills.component.html',
-  styleUrl: './skills.component.css',
+  standalone: true,
   imports: [CommonModule],
-  standalone: true
+  templateUrl: './skills.component.html',
+  styleUrl: './skills.component.css'
 })
 export class SkillsComponent {
   @Input() skills: SimpleSkillCategory[] = [];

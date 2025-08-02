@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoaderService } from '../services/loader.service';
+import { LoaderService } from '../../services/loader.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -26,7 +26,7 @@ export class LoaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.loaderService.isLoading$.subscribe(loading => {
+      this.loaderService.isLoading$.subscribe((loading: boolean) => {
         this.isLoading = loading;
         if (loading) {
           this.startMatrixAnimation();
@@ -34,7 +34,7 @@ export class LoaderComponent implements OnInit, OnDestroy, AfterViewInit {
           this.stopMatrixAnimation();
         }
       }),
-      this.loaderService.appInitializing$.subscribe(initializing => {
+      this.loaderService.appInitializing$.subscribe((initializing: boolean) => {
         this.appInitializing = initializing;
         if (initializing) {
           this.startMatrixAnimation();
@@ -98,10 +98,9 @@ export class LoaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // Draw matrix characters
     for (let i = 0; i < this.drops.length; i++) {
-      const char = this.characters.charAt(Math.floor(Math.random() * this.characters.length));
-      this.ctx.fillText(char, i * this.fontSize, this.drops[i] * this.fontSize);
-      
-      // Reset drop when it reaches bottom
+      const text = this.characters.charAt(Math.floor(Math.random() * this.characters.length));
+      this.ctx.fillText(text, i * this.fontSize, this.drops[i] * this.fontSize);
+
       if (this.drops[i] * this.fontSize > this.canvas.height && Math.random() > 0.975) {
         this.drops[i] = 0;
       }

@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SimpleExperience } from '../services/data-mapping.service';
+import { SimpleExperience } from '../../services/data-mapping.service';
 
 @Component({
   selector: 'app-experience',
-  templateUrl: './experience.component.html',
-  styleUrl: './experience.component.css',
+  standalone: true,
   imports: [CommonModule],
-  standalone: true
+  templateUrl: './experience.component.html',
+  styleUrl: './experience.component.css'
 })
 export class ExperienceComponent {
   @Input() experiences: SimpleExperience[] = [];

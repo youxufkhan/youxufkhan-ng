@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-matrix-cursor',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './matrix-cursor.html',
   styleUrl: './matrix-cursor.css'
 })

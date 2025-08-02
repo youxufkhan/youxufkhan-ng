@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SimpleTestimonial } from '../services/data-mapping.service';
+import { SimpleTestimonial } from '../../services/data-mapping.service';
 
 @Component({
   selector: 'app-testimonials',
-  templateUrl: './testimonials.component.html',
-  styleUrl: './testimonials.component.css',
+  standalone: true,
   imports: [CommonModule],
-  standalone: true
+  templateUrl: './testimonials.component.html',
+  styleUrl: './testimonials.component.css'
 })
 export class TestimonialsComponent {
   @Input() testimonials: SimpleTestimonial[] = [];

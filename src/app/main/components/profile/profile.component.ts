@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { NavigationComponent } from '../navigation/navigation.component';
 
 @Component({
   selector: 'app-profile',
-  imports: [NavigationComponent],
+  standalone: true,
+  imports: [CommonModule, NavigationComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

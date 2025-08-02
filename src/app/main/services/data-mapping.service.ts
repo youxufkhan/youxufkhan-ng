@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Profile, Experience, SkillCategory, Education, Testimonial } from './profile.service';
-import { environment } from '../../environments/environment';
 
 // Simplified interfaces for components
 export interface SimpleExperience {

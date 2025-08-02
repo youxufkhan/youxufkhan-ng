@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SimpleEducation } from '../services/data-mapping.service';
+import { SimpleEducation } from '../../services/data-mapping.service';
 
 @Component({
   selector: 'app-education',
-  templateUrl: './education.component.html',
-  styleUrl: './education.component.css',
+  standalone: true,
   imports: [CommonModule],
-  standalone: true
+  templateUrl: './education.component.html',
+  styleUrl: './education.component.css'
 })
 export class EducationComponent {
   @Input() education: SimpleEducation[] = [];
