@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SimpleEducation } from '../app';
+import { SimpleEducation } from '../services/data-mapping.service';
 
 @Component({
   selector: 'app-education',

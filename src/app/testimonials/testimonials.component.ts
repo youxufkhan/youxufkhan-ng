@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SimpleTestimonial } from '../app';
+import { SimpleTestimonial } from '../services/data-mapping.service';
 
 @Component({
   selector: 'app-testimonials',

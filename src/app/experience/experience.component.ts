@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SimpleExperience } from '../app';
+import { SimpleExperience } from '../services/data-mapping.service';
 
 @Component({
   selector: 'app-experience',
