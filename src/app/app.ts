@@ -14,6 +14,8 @@ import { DatePipe, CommonModule, NgIf } from '@angular/common';
 import { environment } from '../environments/environment';
 import { TechnologiesComponent } from './technologies/technologies.component';
 import { MatrixCursorComponent } from "./matrix-cursor/matrix-cursor";
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderService } from './services/loader.service';
 
 // Simplified experience interface for the component
 export interface SimpleExperience {
@@ -52,7 +54,7 @@ export interface SimpleTestimonial {
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, NgIf, RouterOutlet, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent, ContactComponent, FooterComponent, ProfileComponent, TechnologiesComponent, NavigationComponent, DatePipe, MatrixCursorComponent],
+  imports: [CommonModule, NgIf, RouterOutlet, AboutComponent, ExperienceComponent, SkillsComponent, EducationComponent, TestimonialsComponent, ContactComponent, FooterComponent, ProfileComponent, TechnologiesComponent, NavigationComponent, DatePipe, MatrixCursorComponent, LoaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -79,7 +81,7 @@ export class App implements OnInit {
   // Mapped testimonials for the testimonials component
   public mappedTestimonials: SimpleTestimonial[] = [];
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService, private loaderService: LoaderService) {}
 
   /**
    * Get the full URL for the profile picture by combining the Strapi base URL with the relative path
@@ -156,7 +158,7 @@ export class App implements OnInit {
   fetchProfile(): void {
     this.profileLoading = true;
     this.profileError = null;
-    this.profileService.getProfile().subscribe({
+    this.loaderService.withLoader(this.profileService.getProfile()).subscribe({
       next: (res: ProfileResponse) => {
         this.profile = res.data;
         this.profilePictureUrl = this.getProfilePicUrl(this.profile?.profilePic?.url);

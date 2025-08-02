@@ -1,0 +1,22 @@
+<div class="loader-overlay" *ngIf="shouldShow">
+  <canvas id="loader-canvas"></canvas>
+  
+  <div class="loader-content">
+    <div class="loader-text">
+      <span class="text-glow">INITIALIZING</span>
+      <div class="loading-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+    
+    <div class="loader-status" *ngIf="appInitializing">
+      <span class="text-glow-dim">Loading system components...</span>
+    </div>
+    
+    <div class="loader-status" *ngIf="isLoading && !appInitializing">
+      <span class="text-glow-dim">Fetching data...</span>
+    </div>
+  </div>
+</div> 
