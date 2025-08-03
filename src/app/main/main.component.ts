@@ -4,6 +4,7 @@ import { Profile, ProfileResponse, SimpleExperience, SimpleSkillCategory, Simple
 import { CachedProfileService } from './services/cached-profile.service';
 import { LoaderService, ScrollRevealService, ProjectsDataService } from '../shared';
 import { DataMappingService } from './services/data-mapping.service';
+import { environment } from '../../environments/environment';
 
 // Import all components
 import { AboutComponent } from './components/about/about.component';
@@ -62,6 +63,9 @@ project delivery.`;
   public mappedEducation: SimpleEducation[] = [];
   public mappedTestimonials: SimpleTestimonial[] = [];
   public mappedProjects: SimpleProject[] = [];
+  
+  // Development mode flag
+  public isDevelopmentMode = !environment.production;
 
   constructor(
     private cachedProfileService: CachedProfileService, 

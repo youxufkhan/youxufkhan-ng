@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CachedProfileService } from '../../services/cached-profile.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-cache-manager',
@@ -163,8 +164,8 @@ export class CacheManagerComponent implements OnInit {
   ngOnInit(): void {
     this.updateCacheStats();
     
-    // Show cache manager in development mode
-    this.showCacheManager = true;
+    // Show cache manager only in development mode
+    this.showCacheManager = !environment.production;
   }
 
   updateCacheStats(): void {
