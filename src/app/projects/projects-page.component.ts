@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SimpleProject, DataMappingService } from '../main/services/data-mapping.service';
 import { ScrollRevealService, LoaderService, ProjectsDataService } from '../shared';
-import { ProfileService, ProfileResponse } from '../main/services/profile.service';
+import { ProfileResponse } from '../main/services/profile.service';
+import { CachedProfileService } from '../main/services/cached-profile.service';
 
 @Component({
   selector: 'app-projects-page',
@@ -21,7 +22,7 @@ export class ProjectsPageComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private router: Router,
     private scrollRevealService: ScrollRevealService,
-    private profileService: ProfileService,
+    private cachedProfileService: CachedProfileService,
     private loaderService: LoaderService,
     private dataMappingService: DataMappingService,
     private projectsDataService: ProjectsDataService
@@ -46,13 +47,13 @@ export class ProjectsPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /**
-   * Fetch projects data from the API
+   * Fetch projects data from the API with caching
    */
   fetchProjects(): void {
     this.projectsLoading = true;
     this.projectsError = null;
     
-    this.loaderService.withLoader(this.profileService.getProfile()).subscribe({
+    this.loaderService.withLoader(this.cachedProfileService.getProfile()).subscribe({
       next: (res: ProfileResponse) => {
         this.handleProjectsSuccess(res);
       },

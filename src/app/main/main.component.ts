@@ -1,6 +1,7 @@
 import { Component, signal, HostListener, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfileService, Profile, ProfileResponse } from './services/profile.service';
+import { Profile, ProfileResponse } from './services/profile.service';
+import { CachedProfileService } from './services/cached-profile.service';
 import { LoaderService, ScrollRevealService, ProjectsDataService } from '../shared';
 import { DataMappingService, SimpleExperience, SimpleSkillCategory, SimpleEducation, SimpleTestimonial, SimpleProject } from './services/data-mapping.service';
 
@@ -15,6 +16,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
+import { CacheManagerComponent } from './components/cache-manager/cache-manager.component';
 
 // Import shared components
 
@@ -32,7 +34,8 @@ import { TechnologiesComponent } from './components/technologies/technologies.co
     ContactComponent,
     FooterComponent,
     ProfileComponent,
-    TechnologiesComponent
+    TechnologiesComponent,
+    CacheManagerComponent
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
@@ -61,7 +64,7 @@ project delivery.`;
   public mappedProjects: SimpleProject[] = [];
 
   constructor(
-    private profileService: ProfileService, 
+    private cachedProfileService: CachedProfileService, 
     private loaderService: LoaderService,
     private scrollRevealService: ScrollRevealService,
     private dataMappingService: DataMappingService,
@@ -88,13 +91,13 @@ project delivery.`;
   }
 
   /**
-   * Fetch profile data from the API
+   * Fetch profile data from the API with caching
    */
   fetchProfile(): void {
     this.profileLoading = true;
     this.profileError = null;
     
-    this.loaderService.withLoader(this.profileService.getProfile()).subscribe({
+    this.loaderService.withLoader(this.cachedProfileService.getProfile()).subscribe({
       next: (res: ProfileResponse) => {
         this.handleProfileSuccess(res);
       },
