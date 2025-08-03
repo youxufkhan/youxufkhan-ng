@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SimpleSkillCategory } from '../../services/data-mapping.service';
+import { SimpleSkillCategory } from '../../interfaces';
 
 @Component({
   selector: 'app-skills',

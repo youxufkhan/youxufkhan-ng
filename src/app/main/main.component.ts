@@ -1,9 +1,9 @@
 import { Component, signal, HostListener, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Profile, ProfileResponse } from './services/profile.service';
+import { Profile, ProfileResponse, SimpleExperience, SimpleSkillCategory, SimpleEducation, SimpleTestimonial, SimpleProject } from './interfaces';
 import { CachedProfileService } from './services/cached-profile.service';
 import { LoaderService, ScrollRevealService, ProjectsDataService } from '../shared';
-import { DataMappingService, SimpleExperience, SimpleSkillCategory, SimpleEducation, SimpleTestimonial, SimpleProject } from './services/data-mapping.service';
+import { DataMappingService } from './services/data-mapping.service';
 
 // Import all components
 import { AboutComponent } from './components/about/about.component';

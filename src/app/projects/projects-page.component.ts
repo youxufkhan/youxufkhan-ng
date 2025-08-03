@@ -1,9 +1,10 @@
 import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { SimpleProject, DataMappingService } from '../main/services/data-mapping.service';
+import { SimpleProject } from '../main/interfaces';
+import { DataMappingService } from '../main/services/data-mapping.service';
 import { ScrollRevealService, LoaderService, ProjectsDataService } from '../shared';
-import { ProfileResponse } from '../main/services/profile.service';
+import { ProfileResponse } from '../main/interfaces';
 import { CachedProfileService } from '../main/services/cached-profile.service';
 
 @Component({

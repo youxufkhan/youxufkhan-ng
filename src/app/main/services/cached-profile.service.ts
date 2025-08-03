@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { ProfileService, ProfileResponse } from './profile.service';
-import { CacheService, CacheConfig } from '../../shared/services/cache.service';
+import { ProfileService } from './profile.service';
+import { ProfileResponse } from '../interfaces';
+import { CacheService } from '../../shared/services/cache.service';
+import { CacheConfig } from '../../shared/interfaces';
 
 @Injectable({
   providedIn: 'root'

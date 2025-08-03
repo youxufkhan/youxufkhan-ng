@@ -1,49 +1,20 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Profile, Experience, SkillCategory, Education, Testimonial, Project } from './profile.service';
-
-// Simplified interfaces for components
-export interface SimpleExperience {
-  title: string;
-  companyName: string;
-  startDate: string;
-  endDate: string | null;
-  location: string;
-  jobBullets: string[];
-  companyImageUrl?: string;
-}
-
-export interface SimpleSkillCategory {
-  type: string;
-  skills: string[];
-}
-
-export interface SimpleEducation {
-  degree: string;
-  fieldOfStudy: string;
-  instituteName: string;
-  startDate: string;
-  endDate: string;
-  location: string;
-}
-
-export interface SimpleTestimonial {
-  name: string;
-  title: string;
-  url: string;
-  content: string;
-  imageUrl: string;
-}
-
-export interface SimpleProject {
-  title: string;
-  domain: string;
-  description: string;
-  contribution: string;
-  technologies?: string[];
-  imageUrl?: string;
-  projectUrl?: string;
-}
+import { 
+  Profile, 
+  Experience, 
+  SkillCategory, 
+  Education, 
+  Testimonial, 
+  Project 
+} from '../interfaces';
+import {
+  SimpleExperience,
+  SimpleSkillCategory,
+  SimpleEducation,
+  SimpleTestimonial,
+  SimpleProject
+} from '../interfaces';
 
 @Injectable({
   providedIn: 'root'

@@ -1,18 +1,5 @@
 import { Injectable } from '@angular/core';
-
-export interface CacheItem<T> {
-  data: T;
-  timestamp: number;
-  version: string;
-  expiresAt: number;
-}
-
-export interface CacheConfig {
-  key: string;
-  version: string;
-  ttl: number; // Time to live in milliseconds
-  maxAge?: number; // Maximum age in milliseconds (optional)
-}
+import { CacheItem, CacheConfig } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'

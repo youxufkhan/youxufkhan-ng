@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SimpleProject } from './data-mapping.service';
+import { SimpleProject } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
