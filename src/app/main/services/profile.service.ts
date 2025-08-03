@@ -22,6 +22,26 @@ export interface Experience {
   updatedAt: string;
   publishedAt: string;
   jobBullets: JobBullet[];
+  companyImage?: {
+    id: number;
+    name: string;
+    alternativeText?: string;
+    caption?: string;
+    width: number;
+    height: number;
+    formats?: any;
+    hash: string;
+    ext: string;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string;
+    provider: string;
+    provider_metadata?: any;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+  };
 }
 
 // Skill item interface
@@ -146,11 +166,12 @@ export class ProfileService {
    * @returns Observable<ProfileResponse>
    */
   getProfile(): Observable<ProfileResponse> {
-    // Create params to populate the profilePic field and experiences with their jobBullets
+    // Create params to populate the profilePic field and experiences with their jobBullets and companyImage
     // Using Strapi's nested populate syntax for relations
     const params = new HttpParams()
       .set('populate[profilePic]', 'true')
-      .set('populate[experiences][populate]', 'jobBullets')
+      .set('populate[experiences][populate][jobBullets]', 'true')
+      .set('populate[experiences][populate][companyImage]', 'true')
       .set('populate[skills][populate]', 'skills')
       .set('populate[educations]', 'true')
       .set('populate[testimonials][populate]', 'image');

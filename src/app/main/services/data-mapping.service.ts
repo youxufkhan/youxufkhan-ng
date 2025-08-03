@@ -10,6 +10,7 @@ export interface SimpleExperience {
   endDate: string | null;
   location: string;
   jobBullets: string[];
+  companyImageUrl?: string;
 }
 
 export interface SimpleSkillCategory {
@@ -43,9 +44,14 @@ export class DataMappingService {
    */
   getProfilePicUrl(relativeUrl: string | undefined): string {
     if (!relativeUrl) return '';
-    return relativeUrl;
-    // Uncomment the line below if you need to prepend the Strapi base URL
-    // return `${environment.strapiBaseUrl}${relativeUrl}`;
+    
+    // In production, return the relative URL as-is (assuming it will be served from the same domain)
+    if (environment.production) {
+      return relativeUrl;
+    }
+    
+    // In development, prepend the Strapi base URL
+    return `${environment.strapiBaseUrl}${relativeUrl}`;
   }
 
   /**
@@ -58,7 +64,8 @@ export class DataMappingService {
       startDate: exp.startDate,
       endDate: exp.endDate,
       location: exp.location,
-      jobBullets: exp.jobBullets.map(bullet => bullet.text)
+      jobBullets: exp.jobBullets.map(bullet => bullet.text),
+      companyImageUrl: exp.companyImage ? this.getProfilePicUrl(exp.companyImage.url) : undefined
     }));
   }
 

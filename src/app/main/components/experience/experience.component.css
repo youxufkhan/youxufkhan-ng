@@ -1,1 +1,183 @@
-/* Experience component specific styles can be added here if needed */ 
+/* Experience component specific styles */
+.experience-item {
+  position: relative;
+}
+
+.experience-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.company-image-container {
+  flex-shrink: 0;
+}
+
+.matrix-frame {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 10, 0, 0.8);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(13, 255, 0, 0.3);
+}
+
+/* Matrix border lines */
+.matrix-border {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, #0dff00, transparent);
+  animation: matrix-glow 2s ease-in-out infinite alternate;
+}
+
+.matrix-border-top {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+.matrix-border-right {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+}
+
+.matrix-border-bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+.matrix-border-left {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+}
+
+/* Matrix corner elements */
+.matrix-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #0dff00;
+  box-shadow: 0 0 10px #0dff00;
+  animation: corner-pulse 1.5s ease-in-out infinite alternate;
+}
+
+.matrix-corner-top-left {
+  top: -2px;
+  left: -2px;
+  border-radius: 0 0 8px 0;
+}
+
+.matrix-corner-top-right {
+  top: -2px;
+  right: -2px;
+  border-radius: 0 0 0 8px;
+}
+
+.matrix-corner-bottom-left {
+  bottom: -2px;
+  left: -2px;
+  border-radius: 0 8px 0 0;
+}
+
+.matrix-corner-bottom-right {
+  bottom: -2px;
+  right: -2px;
+  border-radius: 8px 0 0 0;
+}
+
+/* Company image wrapper */
+.company-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.company-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.company-image:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2) contrast(1.1);
+}
+
+/* Company initials fallback */
+.company-initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(13, 255, 0, 0.1), rgba(13, 255, 0, 0.2));
+  border-radius: 4px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0dff00;
+  text-shadow: 0 0 10px #0dff00;
+  letter-spacing: 1px;
+}
+
+/* Company info section */
+.company-info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Animations */
+@keyframes matrix-glow {
+  0% {
+    opacity: 0.5;
+    box-shadow: 0 0 5px #0dff00;
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 15px #0dff00, 0 0 25px #0dff00;
+  }
+}
+
+@keyframes corner-pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .experience-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .matrix-frame {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .company-initials {
+    font-size: 1.2rem;
+  }
+} 

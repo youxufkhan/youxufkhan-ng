@@ -20,6 +20,7 @@ export class ExperienceComponent {
       startDate: '2025-01-01',
       endDate: null,
       location: 'Karachi, Pakistan',
+      companyImageUrl: '/assets/images/spursol-logo.jpeg',
       jobBullets: [
         'Engineered robust data solutions to ensure high availability and performance.',
         'Collaborated with product managers and stakeholders to translate business requirements into technical specifications.',
@@ -33,6 +34,7 @@ export class ExperienceComponent {
       startDate: '2022-01-01',
       endDate: '2025-01-01',
       location: 'Karachi, Pakistan',
+      companyImageUrl: '/assets/images/bykea-logo.jpeg',
       jobBullets: [
         'Participated in the entire application lifecycle, focusing on coding and debugging.',
         'Led teams of engineers, overseeing daily scrums, code reviews, and system design meetings.',
@@ -47,6 +49,7 @@ export class ExperienceComponent {
       startDate: '2017-12-01',
       endDate: '2022-01-01',
       location: 'Karachi, Pakistan',
+      companyImageUrl: '/assets/images/qavi-logo.jpeg',
       jobBullets: [
         'Designed, developed, and maintained features for a large-scale warehouse management system (WMS).',
         'Transitioned from frontend to full-stack development (PHP, Node.js).',
@@ -79,5 +82,39 @@ export class ExperienceComponent {
     const start = this.formatDate(startDate);
     const end = endDate ? this.formatDate(endDate) : 'Present';
     return `${start} - ${end}`;
+  }
+
+  /**
+   * Get company image URL with fallback
+   */
+  getCompanyImageUrl(experience: SimpleExperience): string {
+    if (experience.companyImageUrl) {
+      return experience.companyImageUrl;
+    }
+    
+    // Fallback to placeholder or company name initials
+    return '';
+  }
+
+  /**
+   * Get company initials for fallback display
+   */
+  getCompanyInitials(companyName: string): string {
+    return companyName
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .toUpperCase()
+      .substring(0, 2);
+  }
+
+  /**
+   * Handle image error by hiding the image element
+   */
+  onImageError(event: Event): void {
+    const target = event.target as HTMLImageElement;
+    if (target) {
+      target.style.display = 'none';
+    }
   }
 } 
