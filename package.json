@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --configuration production --base-href /youxufkhan-ng/ && npx angular-cli-ghpages --dir=dist/youxufkhan-ng/browser"
+    "deploy": "ng build --configuration production --base-href /youxufkhan-ng/ && npx angular-cli-ghpages --dir=dist/youxufkhan-ng/browser",
+    "pdeploy": "ng build --configuration production --base-href / && npx angular-cli-ghpages --dir=dist/youxufkhan-ng/browser --repo=https://github.com/youxufkhan/youxufkhan.github.io.git"
   },
   "prettier": {
     "overrides": [
