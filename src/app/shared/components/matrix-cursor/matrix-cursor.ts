@@ -72,17 +72,19 @@ export class MatrixCursorComponent implements AfterViewInit, OnDestroy {
     // Check if the element or any of its parents is interactive
     let currentElement: HTMLElement | null = element;
     while (currentElement) {
-      const tagName = currentElement.tagName.toLowerCase();
-      const className = currentElement.className || '';
-      
-      // Check for interactive elements
-      if (tagName === 'a' || tagName === 'button' || 
-          currentElement.onclick || 
-          currentElement.getAttribute('role') === 'button' ||
-          className.includes('nav-link') ||
-          className.includes('contact-link') ||
-          currentElement.style.cursor === 'pointer') {
-        return true;
+      if (currentElement.tagName) {
+        const tagName = currentElement.tagName.toLowerCase();
+        const className = typeof currentElement.className === 'string' ? currentElement.className : '';
+        
+        // Check for interactive elements
+        if (tagName === 'a' || tagName === 'button' || 
+            currentElement.onclick || 
+            currentElement.getAttribute('role') === 'button' ||
+            className.includes('nav-link') ||
+            className.includes('contact-link') ||
+            currentElement.style.cursor === 'pointer') {
+          return true;
+        }
       }
       
       currentElement = currentElement.parentElement;
