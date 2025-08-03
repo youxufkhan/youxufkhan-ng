@@ -55,6 +55,28 @@
   border-color: #86efac;
 }
 
+/* Project link styles */
+.project-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  transform: scale(1.02);
+}
+
+.project-link:hover .project-image {
+  border-color: #86efac;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+}
+
+.project-link:hover .project-title {
+  color: #0dff00;
+  text-shadow: 0 0 8px rgba(13, 255, 0, 0.4);
+}
+
 /* Project title container */
 .project-title-container {
   flex: 1;
@@ -110,11 +132,35 @@
   margin-bottom: 0.5rem;
 }
 
+.contribution-container {
+  position: relative;
+}
+
 .contribution-text {
   font-size: 0.875rem;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.7);
   word-break: break-words;
+  margin-bottom: 0.5rem;
+}
+
+/* View more contribution button styles */
+.view-more-contribution-btn {
+  background: none;
+  border: none;
+  color: rgba(34, 197, 94, 0.8);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  transition: all 0.3s ease;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.view-more-contribution-btn:hover {
+  color: #86efac;
+  text-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
 }
 
 /* Project technologies styles */

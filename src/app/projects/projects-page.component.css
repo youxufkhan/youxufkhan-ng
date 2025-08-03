@@ -179,6 +179,28 @@
   border-color: #86efac;
 }
 
+/* Project link styles */
+.project-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  transform: scale(1.02);
+}
+
+.project-link:hover .project-image {
+  border-color: #86efac;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+}
+
+.project-link:hover .project-title {
+  color: #0dff00;
+  text-shadow: 0 0 8px rgba(13, 255, 0, 0.4);
+}
+
 /* Project title container */
 .project-title-container {
   flex: 1;

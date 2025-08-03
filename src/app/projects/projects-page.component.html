@@ -41,10 +41,16 @@
         <div class="project-card" *ngFor="let project of projects">
           <div class="project-header">
             <div class="project-image-container" *ngIf="project.imageUrl">
-              <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
+              <a [href]="project.projectUrl" target="_blank" rel="noopener noreferrer" *ngIf="project.projectUrl" class="project-link">
+                <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
+              </a>
+              <img [src]="project.imageUrl" [alt]="project.title" class="project-image" *ngIf="!project.projectUrl">
             </div>
             <div class="project-title-container">
-              <h3 class="project-title text-glow-dim">{{ project.title }}</h3>
+              <a [href]="project.projectUrl" target="_blank" rel="noopener noreferrer" *ngIf="project.projectUrl" class="project-link">
+                <h3 class="project-title text-glow-dim">{{ project.title }}</h3>
+              </a>
+              <h3 class="project-title text-glow-dim" *ngIf="!project.projectUrl">{{ project.title }}</h3>
               <span class="project-domain">{{ project.domain }}</span>
             </div>
           </div>

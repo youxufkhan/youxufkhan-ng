@@ -12,6 +12,9 @@ import { SimpleProject } from '../../interfaces';
 })
 export class ProjectsComponent {
   @Input() projects: SimpleProject[] = [];
+  
+  // Track expanded state for contribution text
+  private expandedContributions: Set<number> = new Set();
 
   // Fallback projects data when API doesn't return any projects
   private fallbackProjects: SimpleProject[] = [
@@ -86,5 +89,41 @@ export class ProjectsComponent {
    */
   viewAllProjects(): void {
     this.router.navigate(['/projects']);
+  }
+
+  /**
+   * Get truncated contribution text (20-25 words)
+   */
+  getTruncatedContribution(contribution: string): string {
+    const words = contribution.split(' ');
+    if (words.length <= 25) {
+      return contribution;
+    }
+    return words.slice(0, 25).join(' ') + '...';
+  }
+
+  /**
+   * Check if contribution needs truncation
+   */
+  needsContributionTruncation(contribution: string): boolean {
+    return contribution.split(' ').length > 25;
+  }
+
+  /**
+   * Check if contribution is expanded
+   */
+  isContributionExpanded(projectIndex: number): boolean {
+    return this.expandedContributions.has(projectIndex);
+  }
+
+  /**
+   * Toggle contribution expanded state
+   */
+  toggleContributionExpanded(projectIndex: number): void {
+    if (this.expandedContributions.has(projectIndex)) {
+      this.expandedContributions.delete(projectIndex);
+    } else {
+      this.expandedContributions.add(projectIndex);
+    }
   }
 } 

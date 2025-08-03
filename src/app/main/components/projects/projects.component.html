@@ -7,10 +7,16 @@
     <div class="project-card project-card-container" *ngFor="let project of currentProjects">
       <div class="project-header">
         <div class="project-image-container" *ngIf="project.imageUrl">
-          <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
+          <a [href]="project.projectUrl" target="_blank" rel="noopener noreferrer" *ngIf="project.projectUrl" class="project-link">
+            <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
+          </a>
+          <img [src]="project.imageUrl" [alt]="project.title" class="project-image" *ngIf="!project.projectUrl">
         </div>
         <div class="project-title-container">
-          <h4 class="project-title text-glow-dim">{{ project.title }}</h4>
+          <a [href]="project.projectUrl" target="_blank" rel="noopener noreferrer" *ngIf="project.projectUrl" class="project-link">
+            <h4 class="project-title text-glow-dim">{{ project.title }}</h4>
+          </a>
+          <h4 class="project-title text-glow-dim" *ngIf="!project.projectUrl">{{ project.title }}</h4>
           <span class="project-domain">{{ project.domain }}</span>
         </div>
       </div>
@@ -19,7 +25,23 @@
         <p class="project-description text-glow-dim">{{ project.description }}</p>
         <div class="project-contribution">
           <h5 class="contribution-title">My Contribution:</h5>
-          <p class="contribution-text">{{ project.contribution }}</p>
+          <div class="contribution-container">
+            <p class="contribution-text">
+              <span *ngIf="!isContributionExpanded(currentProjects.indexOf(project))">
+                {{ getTruncatedContribution(project.contribution) }}
+              </span>
+              <span *ngIf="isContributionExpanded(currentProjects.indexOf(project))">
+                {{ project.contribution }}
+              </span>
+            </p>
+            <button 
+              *ngIf="needsContributionTruncation(project.contribution)"
+              (click)="toggleContributionExpanded(currentProjects.indexOf(project))"
+              class="view-more-contribution-btn"
+              [attr.aria-label]="isContributionExpanded(currentProjects.indexOf(project)) ? 'Show less contribution' : 'Show full contribution'">
+              {{ isContributionExpanded(currentProjects.indexOf(project)) ? 'Show Less' : 'View All' }}
+            </button>
+          </div>
         </div>
         
         <div class="project-technologies" *ngIf="project.technologies && project.technologies.length > 0">
