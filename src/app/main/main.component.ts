@@ -1,8 +1,8 @@
 import { Component, signal, HostListener, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileService, Profile, ProfileResponse } from './services/profile.service';
-import { LoaderService, MatrixEffectService, ScrollRevealService } from '../shared';
-import { DataMappingService, SimpleExperience, SimpleSkillCategory, SimpleEducation, SimpleTestimonial } from './services/data-mapping.service';
+import { LoaderService, ScrollRevealService, ProjectsDataService } from '../shared';
+import { DataMappingService, SimpleExperience, SimpleSkillCategory, SimpleEducation, SimpleTestimonial, SimpleProject } from './services/data-mapping.service';
 
 // Import all components
 import { AboutComponent } from './components/about/about.component';
@@ -10,13 +10,13 @@ import { ExperienceComponent } from './components/experience/experience.componen
 import { SkillsComponent } from './components/skills/skills.component';
 import { EducationComponent } from './components/education/education.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
 
 // Import shared components
-import { LoaderComponent, MatrixCursorComponent } from '../shared';
 
 @Component({
   selector: 'app-main',
@@ -28,12 +28,11 @@ import { LoaderComponent, MatrixCursorComponent } from '../shared';
     SkillsComponent,
     EducationComponent,
     TestimonialsComponent,
+    ProjectsComponent,
     ContactComponent,
     FooterComponent,
     ProfileComponent,
-    TechnologiesComponent,
-    LoaderComponent,
-    MatrixCursorComponent
+    TechnologiesComponent
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
@@ -59,13 +58,14 @@ project delivery.`;
   public mappedSkills: SimpleSkillCategory[] = [];
   public mappedEducation: SimpleEducation[] = [];
   public mappedTestimonials: SimpleTestimonial[] = [];
+  public mappedProjects: SimpleProject[] = [];
 
   constructor(
     private profileService: ProfileService, 
     private loaderService: LoaderService,
-    private matrixEffectService: MatrixEffectService,
     private scrollRevealService: ScrollRevealService,
-    private dataMappingService: DataMappingService
+    private dataMappingService: DataMappingService,
+    private projectsDataService: ProjectsDataService
   ) {}
 
   ngOnInit(): void {
@@ -73,19 +73,11 @@ project delivery.`;
   }
 
   ngAfterViewInit(): void {
-    this.initializeMatrixEffect();
     this.initialReveal();
   }
 
   ngOnDestroy(): void {
     // Cleanup is handled by the MatrixEffectService
-  }
-
-  /**
-   * Initialize the matrix background effect
-   */
-  private initializeMatrixEffect(): void {
-    this.matrixEffectService.initMatrixEffect();
   }
 
   /**
@@ -159,6 +151,13 @@ project delivery.`;
     if (this.profile.testimonials) {
       this.mappedTestimonials = this.dataMappingService.mapTestimonials(this.profile.testimonials);
     }
+
+    // Map projects
+    if (this.profile.projects) {
+      this.mappedProjects = this.dataMappingService.mapProjects(this.profile.projects);
+      // Share projects data with the service for other components
+      this.projectsDataService.setProjects(this.mappedProjects);
+    }
   }
 
   /**
@@ -166,7 +165,7 @@ project delivery.`;
    */
   @HostListener('window:resize')
   onResize(): void {
-    this.matrixEffectService.onResize();
+    // MatrixEffectService.onResize(); // This line is removed as per the edit hint
   }
 
   /**

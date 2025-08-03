@@ -10,6 +10,7 @@ export class MatrixEffectService implements OnDestroy {
   private rainDrops: number[] = [];
   private columns = 0;
   private animationInterval?: number;
+  private isInitialized = false;
   private characters =
     'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン' +
     'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -18,6 +19,11 @@ export class MatrixEffectService implements OnDestroy {
    * Initialize the matrix effect
    */
   initMatrixEffect(): void {
+    // Prevent multiple initializations
+    if (this.isInitialized) {
+      return;
+    }
+
     this.canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement;
     if (!this.canvas) {
       console.warn('Matrix canvas element not found');
@@ -27,6 +33,7 @@ export class MatrixEffectService implements OnDestroy {
     this.ctx = this.canvas.getContext('2d')!;
     this.setupCanvas();
     this.setupMatrixRain();
+    this.isInitialized = true;
   }
 
   /**
@@ -62,6 +69,10 @@ export class MatrixEffectService implements OnDestroy {
    * Start the matrix rain animation
    */
   private setupMatrixRain(): void {
+    // Clear any existing interval before creating a new one
+    if (this.animationInterval) {
+      clearInterval(this.animationInterval);
+    }
     this.animationInterval = window.setInterval(this.drawMatrix, 50);
   }
 
@@ -69,7 +80,9 @@ export class MatrixEffectService implements OnDestroy {
    * Handle window resize
    */
   onResize(): void {
-    this.setupCanvas();
+    if (this.isInitialized) {
+      this.setupCanvas();
+    }
   }
 
   /**
@@ -79,5 +92,6 @@ export class MatrixEffectService implements OnDestroy {
     if (this.animationInterval) {
       clearInterval(this.animationInterval);
     }
+    this.isInitialized = false;
   }
 } 

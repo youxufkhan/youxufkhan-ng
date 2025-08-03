@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Profile, Experience, SkillCategory, Education, Testimonial } from './profile.service';
+import { Profile, Experience, SkillCategory, Education, Testimonial, Project } from './profile.service';
 
 // Simplified interfaces for components
 export interface SimpleExperience {
@@ -33,6 +33,16 @@ export interface SimpleTestimonial {
   url: string;
   content: string;
   imageUrl: string;
+}
+
+export interface SimpleProject {
+  title: string;
+  domain: string;
+  description: string;
+  contribution: string;
+  technologies?: string[];
+  imageUrl?: string;
+  projectUrl?: string;
 }
 
 @Injectable({
@@ -103,6 +113,21 @@ export class DataMappingService {
       url: testimonial.url,
       content: testimonial.content,
       imageUrl: this.getProfilePicUrl(testimonial.image?.url)
+    }));
+  }
+
+  /**
+   * Map projects from the profile response to a simpler format for the component
+   */
+  mapProjects(projects: Project[]): SimpleProject[] {
+    return projects.map(project => ({
+      title: project.name,
+      domain: project.domain,
+      description: project.description,
+      contribution: project.contribution,
+      technologies: project.technologies ? project.technologies.split(', ') : [],
+      imageUrl: project.logoImage ? this.getProfilePicUrl(project.logoImage.url) : undefined,
+      projectUrl: project.url
     }));
   }
 

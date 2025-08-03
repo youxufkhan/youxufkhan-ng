@@ -1,0 +1,70 @@
+<!-- Projects Page -->
+<div class="projects-page-container">
+  <!-- Header -->
+  <header class="projects-header">
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-4xl font-bold text-glow mb-2">// PROJECTS_</h1>
+          <p class="text-glow-dim">A collection of projects I've worked on across different domains</p>
+        </div>
+        <button 
+          (click)="goBack()" 
+          class="back-btn"
+          aria-label="Go back to home">
+          <svg class="back-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Back to Home
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Projects Grid -->
+  <main class="projects-content">
+    <div class="container mx-auto px-4 py-8">
+      <!-- Loading State -->
+      <div *ngIf="projectsLoading" class="loading-container">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Loading projects...</p>
+      </div>
+
+      <!-- Error State -->
+      <div *ngIf="projectsError && !projectsLoading" class="error-container">
+        <p class="error-text">{{ projectsError }}</p>
+        <button (click)="loadProjects()" class="retry-btn">Retry</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid" *ngIf="!projectsLoading && !projectsError">
+        <div class="project-card" *ngFor="let project of projects">
+          <div class="project-header">
+            <div class="project-image-container" *ngIf="project.imageUrl">
+              <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
+            </div>
+            <div class="project-title-container">
+              <h3 class="project-title text-glow-dim">{{ project.title }}</h3>
+              <span class="project-domain">{{ project.domain }}</span>
+            </div>
+          </div>
+          
+          <div class="project-content">
+            <p class="project-description text-glow-dim">{{ project.description }}</p>
+            <div class="project-contribution">
+              <h4 class="contribution-title">My Contribution:</h4>
+              <p class="contribution-text">{{ project.contribution }}</p>
+            </div>
+            
+            <div class="project-technologies" *ngIf="project.technologies && project.technologies.length > 0">
+              <h4 class="technologies-title">Technologies:</h4>
+              <div class="technologies-tags">
+                <span class="technology-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div> 

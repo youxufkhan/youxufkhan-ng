@@ -1,0 +1,47 @@
+<!-- Projects Section -->
+<section id="projects" class="section-container p-6 md:p-8 reveal mb-16">
+  <h2 class="text-3xl font-bold text-glow mb-8">// PROJECTS_</h2>
+  
+  <!-- Projects Grid -->
+  <div class="projects-grid">
+    <div class="project-card project-card-container" *ngFor="let project of currentProjects">
+      <div class="project-header">
+        <div class="project-image-container" *ngIf="project.imageUrl">
+          <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
+        </div>
+        <div class="project-title-container">
+          <h4 class="project-title text-glow-dim">{{ project.title }}</h4>
+          <span class="project-domain">{{ project.domain }}</span>
+        </div>
+      </div>
+      
+      <div class="project-content">
+        <p class="project-description text-glow-dim">{{ project.description }}</p>
+        <div class="project-contribution">
+          <h5 class="contribution-title">My Contribution:</h5>
+          <p class="contribution-text">{{ project.contribution }}</p>
+        </div>
+        
+        <div class="project-technologies" *ngIf="project.technologies && project.technologies.length > 0">
+          <h5 class="technologies-title">Technologies:</h5>
+          <div class="technologies-tags">
+            <span class="technology-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- View All Projects Button -->
+  <div class="text-center mt-8">
+    <button 
+      (click)="viewAllProjects()" 
+      class="view-all-projects-btn"
+      aria-label="View all projects">
+      View All Projects
+      <svg class="view-all-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+</section> 

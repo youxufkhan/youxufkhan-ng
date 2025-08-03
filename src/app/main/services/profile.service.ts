@@ -99,6 +99,44 @@ export interface TestimonialImage {
   publishedAt: string;
 }
 
+
+
+// Project interface for profile projects
+export interface Project {
+  id: number;
+  documentId: string;
+  name: string;
+  domain: string;
+  description: string;
+  contribution: string;
+  url?: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  technologies: string;
+  logoImage?: {
+    id: number;
+    documentId: string;
+    name: string;
+    alternativeText?: string;
+    caption?: string;
+    width: number;
+    height: number;
+    formats?: any;
+    hash: string;
+    ext: string;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl?: string;
+    provider: string;
+    provider_metadata?: any;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+  };
+}
+
 // Testimonial interface for profile testimonials
 export interface Testimonial {
   id: number;
@@ -128,6 +166,7 @@ export interface Profile {
   skills: SkillCategory[];
   educations: Education[];
   testimonials: Testimonial[];
+  projects: Project[];
   profilePic?: {
     id: number;
     name: string;
@@ -174,7 +213,8 @@ export class ProfileService {
       .set('populate[experiences][populate][companyImage]', 'true')
       .set('populate[skills][populate]', 'skills')
       .set('populate[educations]', 'true')
-      .set('populate[testimonials][populate]', 'image');
+      .set('populate[testimonials][populate]', 'image')
+      .set('populate[projects][populate]', 'logoImage');
     
     return this.strapi.get<ProfileResponse>('/profile', params);
   }

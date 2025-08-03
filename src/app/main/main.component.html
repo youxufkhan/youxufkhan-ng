@@ -1,7 +1,3 @@
-<app-loader></app-loader>
-
-<canvas id="matrix-canvas"></canvas>
- 
 <!-- Profile Section -->
 <app-profile  [title]="profile && !profileError ? profile.title : defaultTitle" [profilePictureUrl]="profilePictureUrl"></app-profile>
 
@@ -12,6 +8,9 @@
 
   <!-- Experience Section -->
   <app-experience [experiences]="mappedExperiences"></app-experience>
+
+  <!-- Projects Section -->
+  <app-projects [projects]="mappedProjects"></app-projects>
 
   <!-- Skills Section -->
   <app-skills [skills]="mappedSkills"></app-skills>
@@ -30,6 +29,4 @@
 
 </div>
 
-<app-footer></app-footer>
-
-<app-matrix-cursor></app-matrix-cursor> 
+<app-footer></app-footer> 
